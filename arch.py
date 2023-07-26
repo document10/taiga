@@ -41,41 +41,44 @@ print("Final options:")
 print("Graphics:"+options["graphics"][build["graphics"]])
 print("Display manager:"+options["DM"][build["DM"]])
 print("Desktop environment:"+options["DE"][build["DE"]])
-
-print("To be installed:")
-print("Base packages:")
-for p in packages["base"]:
-    print(p)
-print("Graphics:")
-if build["graphics"]==0:
-    print("Skipped")
-else:
-    for p in packages["graphics"][build["graphics"]]:
+ok= input("Confirm?").lower()
+if ok == "y" or ok == "yes":    
+    print("To be installed:")
+    print("Base packages:")
+    for p in packages["base"]:
         print(p)
-print("Display manager:")
-if build["DM"]==0:
-    print("Skipped")
-else:
-    for p in packages["DM"][build["DM"]]:
-        print(p)
-print("Desktop environment:")
-if build["DE"]==0:
-    print("Skipped")
-else:
-    for p in packages["DE"][build["DE"]]:
-        print(p)
+    print("Graphics:")
+    if build["graphics"]==0:
+        print("Skipped")
+    else:
+        for p in packages["graphics"][build["graphics"]]:
+            print(p)
+    print("Display manager:")
+    if build["DM"]==0:
+        print("Skipped")
+    else:
+        for p in packages["DM"][build["DM"]]:
+            print(p)
+    print("Desktop environment:")
+    if build["DE"]==0:
+        print("Skipped")
+    else:
+        for p in packages["DE"][build["DE"]]:
+            print(p)
 
-
-if build["graphics"]!=0:
     for p in packages["base"]:
         command += " "+ p
-    for p in packages["graphics"][build["graphics"]]:
-        command += " "+ p
-    for p in packages["DM"][build["DE"]]:
-        command += " "+ p
-    for p in packages["DE"][build["DE"]]:
-        command += " "+ p
+    if build["graphics"]!=0:
+        for p in packages["graphics"][build["graphics"]]:
+            command += " "+ p
+    if build["DM"]!=0:
+        for p in packages["DM"][build["DM"]]:
+            command += " "+ p
+    if build["DE"]!=0:
+        for p in packages["DE"][build["DE"]]:
+            command += " "+ p
 
-print(command)
+    os.system(command)
 
-os.system("exa -a")
+else:
+    print("Installation aborted.")
