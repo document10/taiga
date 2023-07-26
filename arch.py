@@ -12,7 +12,7 @@ build = {
 }
 packages = {
     "graphics" : ["",["xf86-video-vesa"],["nvidia-dkms nvidia-utils", "lib32-nvidia-utils", "nvidia-settings", "vulkan-icd-loader", "lib32-vulkan-icd-loader"],["lib32-mesa", "vulkan-radeon" ,"lib32-vulkan-radeon" ,"vulkan-icd-loader","lib32-vulkan-icd-loader"],["lib32-mesa vulkan-intel", "lib32-vulkan-intel", "vulkan-icd-loader", "lib32-vulkan-icd-loader"]],
-    "DM" : ["",["sddm"],["lightdm","lightdm-gtk-greeter"],["gdm"]],
+    "DM" : ["",["gdm"],["sddm"],["lightdm","lightdm-gtk-greeter"]],
     "DE" : ["",["awesome","pcmanfm","network-manager-applet"],["budgie","budgie-desktop-view","budgie-backgrounds","materia-gtk-theme","papirus-icon-theme"],["cinnamon","nemo-fileroller","faenza-icon-theme","nemo-preview","nemo-seahorse","nemo-share","nemo-terminal","network-manager-applet"],["cutefish"],["deepin","deepin-kwin","deepin-extra"],["enlightenment","ecrire","ephoto","evisum","rage","terminology","connman"],["gnome"],["plasma", "plasma-wayland-session", "kde-applications" ,"packagekit-qt5"],["lxde","network-manager-applet"],["lxqt","network-manager-applet","breeze-icons","oxygen-icons"],["mate","mate-extra"],["xfce4","xfce4-goodies"]],
     "base": ["xorg", "xorg-server", "xterm", "firefox","avahi" ,"xdg-user-dirs" ,"xdg-utils", "gedit", "bluez", "bluez-utils", "alsa-utils", "pipewire", "pipewire-alsa" , "pipewire-pulse" ,"pipewire-jack" ,"sof-firmware" ,"blueman" ,"arc-solid-gtk-theme", "arc-gtk-theme","arc-icon-theme"]
 }
