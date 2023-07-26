@@ -80,6 +80,7 @@ if ok == "y" or ok == "yes":
             command += " "+ p
 
     os.system(command)
+    os.system("sudo systemctl enable " + services[build["DM"]])
 
 else:
     print("Installation aborted.")
