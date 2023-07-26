@@ -19,6 +19,7 @@ packages = {
 
 command = "sudo pacman -Syu"
 
+services = ["","gdm.service","sddm.service","lightdm.service"]
 print("Select your graphics")
 for i in range(0,len(options["graphics"])):
     print(str(i)+":"+options["graphics"][i])
