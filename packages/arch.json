@@ -1,0 +1,105 @@
+{
+    "name":"Arch Linux",
+    "installer": "pacman -Syu --noconfirm",
+    "services" : "systemctl enable ",
+    "identify" : "pacman",
+    "base" : ["xorg", "xorg-server", "xterm","avahi" ,"xdg-user-dirs" ,"xdg-utils", "bluez", "bluez-utils", "alsa-utils", "pipewire", "pipewire-alsa" , "pipewire-pulse" ,"pipewire-jack" ,"sof-firmware" ,"blueman" ,"arc-solid-gtk-theme", "arc-gtk-theme","arc-icon-theme","network-manager-applet"],
+    "extra" : ["systemctl enable bluetooth"],
+    "GD" : [
+        {
+            "name" : "Nvidia",
+            "packages" : ["nvidia-dkms nvidia-utils", "lib32-nvidia-utils", "nvidia-settings", "vulkan-icd-loader", "lib32-vulkan-icd-loader"]
+        },
+        {
+            "name" : "AMD",
+            "packages" : ["lib32-mesa", "vulkan-radeon" ,"lib32-vulkan-radeon" ,"vulkan-icd-loader","lib32-vulkan-icd-loader"]
+        },
+        {
+            "name" : "Intel",
+            "packages" : ["lib32-mesa vulkan-intel", "lib32-vulkan-intel", "vulkan-icd-loader", "lib32-vulkan-icd-loader"]
+        },
+        {
+            "name" : "Vesa",
+            "packages" : ["xf86-video-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "service":"gdm.service",
+            "packages":["gdm"]
+        },
+        {
+            "name":"LightDM",
+            "service":"lightdm.service",
+            "packages":["lightdm","lightdm-gtk-greeter"]
+        },
+        {
+            "name":"SDDM",
+            "service": "sddm.service",
+            "packages" : ["sddm"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "packages": ["awesome","pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "packages":["budgie","budgie-desktop-view","budgie-backgrounds","materia-gtk-theme","papirus-icon-theme"]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "packages":["cinnamon","nemo-fileroller","nemo-preview","nemo-seahorse","nemo-share","nemo-terminal"]
+        },
+        {
+            "name":"Cutefish",
+            "DM":"SDDM",
+            "packages":["cutefish"]
+        },
+        {
+            "name":"Deepin",
+            "DM":"SDDM",
+            "packages":["deepin","deepin-kwin","deepin-extra"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "packages":["enlightenment","ecrire","ephoto","evisum","rage","terminology"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "packages":["gnome"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "packages":["plasma", "plasma-wayland-session", "kde-applications" ,"packagekit-qt5","sddm-kcm"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "packages":["lxde"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"SDDM",
+            "packages":["lxqt","breeze-icons","oxygen-icons","kwin"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "packages":["mate","mate-extra"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "packages":["xfce4","xfce4-goodies"]
+        }
+    ]
+}
