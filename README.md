@@ -5,10 +5,10 @@ Taiga or Terminal Application for Installing Graphical Appliances is a terminal 
 
 The script is currrently in an alpha state for the following reasons:
 
--Need to do testing on other GPUs,can only test AMD
-
--Only supports Arch
+-Need to do more testing
 
 -Python is an dependency
 
--the script errors if an invalid option is sent
+-Methods for detecting distros/GPUs may be inaccurate
+
+Use on a production machine is not reccomended at the moment.

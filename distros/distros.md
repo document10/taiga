@@ -8,7 +8,8 @@ This folder contains JSON files related to every distro,graphics vendor,display 
     "services" : "",
     "identify" : "",
     "base" : [],
-    "extra" : [],
+    "pre" : [],
+    "post" : [],
     "GD" : [
         {
             "name" : "",
