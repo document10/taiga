@@ -4,8 +4,8 @@
     "services" : "systemctl enable ",
     "identify" : "which apt",
     "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman"],
-    "pre" : ["sudo apt-add-repository non-free","sudo dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
-    "post" : ["systemctl get-default","systemctl set-default graphical.target"],
+    "pre" : ["apt-add-repository non-free","dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
+    "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [
         {
             "name" : "AMD",
