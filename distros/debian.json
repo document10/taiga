@@ -1,9 +1,9 @@
 {
-    "name":"Debian/Ubuntu",
+    "name":"Debian",
     "installer": "apt install -y",
     "services" : "systemctl enable ",
     "identify" : "which apt",
-    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman"],
+    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman","network-manager"],
     "pre" : ["apt-add-repository non-free","dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [
