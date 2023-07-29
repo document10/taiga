@@ -1,10 +1,10 @@
 {
     "name":"Debian/Ubuntu",
-    "installer": "apt install --install-suggests -y",
+    "installer": "apt install -y",
     "services" : "systemctl enable ",
     "identify" : "which apt",
-    "base" : [],
-    "pre" : ["apt update","apt upgrade"],
+    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman"],
+    "pre" : ["sudo apt-add-repository non-free","sudo dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl get-default","systemctl set-default graphical.target"],
     "GD" : [
         {
