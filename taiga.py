@@ -8,6 +8,7 @@ import subprocess
 distros = []
 distro = {}
 id = -1
+mode = 0
 workdir = Path.cwd()
 dirs = os.listdir(str(workdir)+"/distros")
 dirs.remove('distros.md')
@@ -18,7 +19,6 @@ for d in dirs:
     file.close() #Closing the file prevents any errors after we're done with the file.
 
 #Check if the user is logged in as root
-mode = 0
 if os.getuid() != 0:
     print("WARNING!")
     print("The script is not running as root.Therefore,the script will run in \"simulation mode\",which will only show you the commands that would be executed.")
@@ -35,6 +35,11 @@ build = {
     "base_pkgs":0
 }
 
+def run_task(task):
+    if mode == 1:
+        os.system(task)
+    else:
+        print(task)
 
 print("1.Express install:Automatically detect the distro,GPU and installs the desired desktop environment with the reccomended display manager")
 print("2.Custom  install:Select all options manually")
@@ -153,43 +158,46 @@ if build["DE"]!=-1:
 ok = input("Confirm?(y/n/yes/no)").lower()
 if ok == "y" or ok=="yes":
     services = ""
+    print("Preconfiguring system")
+    for c in distro["pre"]:
+        run_task(c)
     install = distro["installer"]
     for b in distro["base"]:
         install += " " + b
+    print("Installing base packages")
+    run_task(install)
+    print("Installing drivers")
+    install = distro["installer"]
     if build["GD"]!=-1:
         for g in distro["GD"][build["GD"]]["packages"]:
             install += " " + g
+        run_task(install)
+    else:
+        print("Skipped")
+    print("Installing display manager")
+    install = distro["installer"]
     if build["DM"]!=-1:
         for d in distro["DM"][build["DM"]]["packages"]:
             install += " " + d
-            services = distro["services"]+ distro["DM"][build["DM"]]["service"]
+        run_task(install)
+        services = distro["services"]+ distro["DM"][build["DM"]]["service"]
+        run_task(services)
+    else:
+        print("Skipped")
+
+    print("Installing desktop environment")
+    install = distro["installer"]
     if build["DE"]!=-1:
         for e in distro["DE"][build["DE"]]["packages"]:
             install += " " + e
-    if mode == 0:
-        print("Preconfiguring system")
-        for c in distro["pre"]:
-            print(c)
-        print("Installing packages")
-        print(install)
-        if build["GD"]!= -1:
-            print("Configuring "+distro["DM"][build["DM"]]["name"])
-            print(services)
-        print("Final configuration")
-        for c in distro["post"]:
-            print(c)
-        print("Simulation completed.")
+        run_task(install)
     else:
-        for c in distro["pre"]:
-            os.system(c)
-        print("Installing packages")
-        os.system(install)
-        if build["GD"]!= -1:
-            print("Configuring "+distro["DM"][build["DM"]]["name"])
-            os.system(services)
-        print("Final configuration")
-        for c in distro["post"]:
-            os.system(c)
-        print("Installation completed.Reboot the system to enter your new GUI!")
+        print("Skipped")
+    
+    print("Final configuration")
+    for c in distro["post"]:
+        run_task(c)
+    
+    print("Installation completed.Reboot the system to enter your new GUI!")
 else:
     print("Installation aborted.")
