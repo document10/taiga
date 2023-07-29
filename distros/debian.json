@@ -1,0 +1,96 @@
+{
+    "name":"Debian/Ubuntu",
+    "installer": "apt install --install-suggests -y",
+    "services" : "systemctl enable ",
+    "identify" : "which apt",
+    "base" : [],
+    "pre" : ["apt update","apt upgrade"],
+    "post" : ["systemctl get-default","systemctl set-default graphical.target"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "packages" : ["xserver-xorg-video-amdgpu"]
+        },
+        {
+            "name" : "Intel",
+            "packages" : ["xserver-xorg-video-intel"]
+        },
+        {
+            "name" : "Nvidia",
+            "packages" : ["xserver-xorg-video-nouveau"]
+        },
+        {
+            "name" : "VM",
+            "packages" : ["xserver-xorg-video-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "service":"gdm.service",
+            "packages":["gdm3"]
+        },
+        {
+            "name":"LightDM",
+            "service":"lightdm.service",
+            "packages":["lightdm","lightdm-gtk-greeter"]
+        },
+        {
+            "name":"SDDM",
+            "service": "sddm.service",
+            "packages" : ["sddm"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "packages": ["awesome","pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "packages":["budgie-desktop"]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "packages":["task-cinnamon-desktop"]
+        },
+        {
+            "name":"Cutefish",
+            "DM":"SDDM",
+            "packages":["cutefish-core"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "packages":["gnome"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "packages":["kde-full"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "packages":["lxde", "task-lxde-desktop"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"SDDM",
+            "packages":["lxqt","breeze-icon-theme","oxygen-icon-theme"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "packages":["mate-desktop-environment ","mate-desktop-environment-extras"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "packages":["task-xfce-desktop"]
+        }
+    ]
+}

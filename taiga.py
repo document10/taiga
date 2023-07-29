@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from pathlib import Path
 from re import search
 import os
@@ -48,8 +49,8 @@ ins_type = input("Select installation type(0 to abort):")
 if ins_type == "1":
     #Identifying the distro
     i = 0
-    for d in distros:
-        c = os.system(d["identify"])
+    while id==-1 and i <len(distros):
+        c = os.system(distros[i]["identify"])
         if c==0:
             id = i
         i+=1
@@ -81,6 +82,9 @@ if ins_type == "1":
     try:
         build["DE"]= int(input("Enter the desktop environment:"))-1
     except:
+        print("Invalid option")
+        exit()
+    if build["DE"]>=len(distro["DE"]) or build["DE"]<0:
         print("Invalid option")
         exit()
     i=0
