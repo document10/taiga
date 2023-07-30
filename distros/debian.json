@@ -1,8 +1,8 @@
 {
-    "name":"Debian",
+    "name":"Debian/Ubuntu",
     "installer": "apt install -y",
     "services" : "systemctl enable ",
-    "identify" : "apt list | grep -i debian",
+    "identify" : "apt -v",
     "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman","network-manager"],
     "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
@@ -69,7 +69,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "packages":["gnome"],
+            "packages":["task-gnome-desktop"],
             "preconf": []
         },
         {
@@ -87,13 +87,13 @@
         {
             "name":"LXQT",
             "DM":"LightDM",
-            "packages":["lxqt","breeze-icon-theme","oxygen-icon-theme"],
+            "packages":["task-lxqt-desktop","breeze-icon-theme","oxygen-icon-theme"],
             "preconf": []
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "packages":["mate-desktop-environment ","mate-desktop-environment-extras"],
+            "packages":["task-mate-desktop ","mate-desktop-environment-extras"],
             "preconf": []
         },
         {
