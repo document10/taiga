@@ -69,13 +69,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "packages":["task-gnome-desktop"],
-            "preconf": []
-        },
-        {
-            "name":"GNOME-Flashback",
-            "DM":"GDM",
-            "packages":["task-gnome-desktop-flashback"],
+            "packages":["task-gnome-desktop","task-gnome-flashback-desktop"],
             "preconf": []
         },
         {
