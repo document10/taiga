@@ -59,7 +59,7 @@
         },
         {
             "name":"Cutefish",
-            "DM":"SDDM",
+            "DM":"LightDM",
             "packages":["cutefish-core"]
         },
         {
@@ -79,7 +79,7 @@
         },
         {
             "name":"LXQT",
-            "DM":"SDDM",
+            "DM":"LightDM",
             "packages":["lxqt","breeze-icon-theme","oxygen-icon-theme"]
         },
         {
