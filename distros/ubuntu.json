@@ -2,7 +2,7 @@
     "name":"Ubuntu",
     "installer": "apt install -y",
     "services" : "systemctl enable ",
-    "identify" : "apt list | grep -i ubuntu",
+    "identify" : "add-apt-repository",
     "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman","network-manager","ppa-purge"],
     "pre" : ["add-apt-repository universe","dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
