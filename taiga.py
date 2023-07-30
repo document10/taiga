@@ -93,12 +93,12 @@ if ins_type == "1":
             build["DM"]=i
         i+=1
 elif ins_type=="2":
-    i=0
+    i=1
     for d in distros:
         print(str(i)+"."+d["name"])
         i+=1
     try:
-        build["distro"]=int(input("Select your distro from the list of supported distros:"))
+        build["distro"]=int(input("Select your distro from the list of supported distros:"))-1
     except:
         print("Invalid option")
         exit()
@@ -159,8 +159,8 @@ if build["DM"]!=-1:
     print("Display Manager:"+distro["DM"][build["DM"]]["name"])
 if build["DE"]!=-1:
     print("Desktop Environment:"+distro["DE"][build["DE"]]["name"])
-ok = input("Confirm?(y/n/yes/no)").lower()
-if ok == "y" or ok=="yes":
+ok = input("Confirm?(y/n)").lower()
+if ok == "y":
     services = ""
     print("Preconfiguring system")
     for c in distro["pre"]:
@@ -192,6 +192,8 @@ if ok == "y" or ok=="yes":
     print("Installing desktop environment")
     install = distro["installer"]
     if build["DE"]!=-1:
+        for c in distro["DE"][build["DE"]]["preconf"]:
+            run_task(c)
         for e in distro["DE"][build["DE"]]["packages"]:
             install += " " + e
         run_task(install)

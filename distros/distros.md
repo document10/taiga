@@ -27,7 +27,8 @@ This folder contains JSON files related to every distro,graphics vendor,display 
         {
             "name":"",
             "DM":"",
-            "packages": []
+            "packages": [],
+            "preconf": []
         }
     ]
 }

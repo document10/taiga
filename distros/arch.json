@@ -45,62 +45,74 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "packages": ["awesome","pcmanfm"]
+            "packages": ["awesome","pcmanfm"],
+            "preconf": []
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "packages":["budgie","budgie-desktop-view","budgie-backgrounds","materia-gtk-theme","papirus-icon-theme"]
+            "packages":["budgie","budgie-desktop-view","budgie-backgrounds","materia-gtk-theme","papirus-icon-theme"],
+            "preconf": []
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "packages":["cinnamon","nemo-fileroller","nemo-preview","nemo-seahorse","nemo-share","nemo-terminal"]
+            "packages":["cinnamon","nemo-fileroller","nemo-preview","nemo-seahorse","nemo-share","nemo-terminal"],
+            "preconf": []
         },
         {
             "name":"Cutefish",
             "DM":"SDDM",
-            "packages":["cutefish"]
+            "packages":["cutefish"],
+            "preconf": []
         },
         {
             "name":"Deepin",
             "DM":"SDDM",
-            "packages":["deepin","deepin-kwin","deepin-extra"]
+            "packages":["deepin","deepin-kwin","deepin-extra"],
+            "preconf": []
         },
         {
             "name":"Enlightenment",
             "DM":"LightDM",
-            "packages":["enlightenment","ecrire","ephoto","evisum","rage","terminology"]
+            "packages":["enlightenment","ecrire","ephoto","evisum","rage","terminology"],
+            "preconf": []
         },
         {
             "name":"GNOME",
             "DM":"GDM",
-            "packages":["gnome"]
+            "packages":["gnome"],
+            "preconf": []
         },
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "packages":["plasma", "plasma-wayland-session", "kde-applications" ,"packagekit-qt5","sddm-kcm"]
+            "packages":["plasma", "plasma-wayland-session", "kde-applications" ,"packagekit-qt5","sddm-kcm"],
+            "preconf": []
         },
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "packages":["lxde"]
+            "packages":["lxde"],
+            "preconf": []
         },
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "packages":["lxqt","breeze-icons","oxygen-icons","kwin"]
+            "packages":["lxqt","breeze-icons","oxygen-icons","kwin"],
+            "preconf": []
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "packages":["mate","mate-extra"]
+            "packages":["mate","mate-extra"],
+            "preconf": []
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "packages":["xfce4","xfce4-goodies"]
+            "packages":["xfce4","xfce4-goodies"],
+            "preconf": []
         }
     ]
 }

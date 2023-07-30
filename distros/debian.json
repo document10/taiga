@@ -4,7 +4,7 @@
     "services" : "systemctl enable ",
     "identify" : "which apt",
     "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman","network-manager"],
-    "pre" : ["apt-add-repository non-free","dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
+    "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -45,52 +45,62 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "packages": ["awesome","pcmanfm"]
+            "packages": ["awesome","pcmanfm"],
+            "preconf": []
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "packages":["budgie-desktop"]
+            "packages":["budgie-desktop"],
+            "preconf": []
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "packages":["task-cinnamon-desktop"]
+            "packages":["task-cinnamon-desktop"],
+            "preconf": []
         },
         {
             "name":"Cutefish",
             "DM":"LightDM",
-            "packages":["cutefish-core"]
+            "packages":["cutefish-core"],
+            "preconf": []
         },
         {
             "name":"GNOME",
             "DM":"GDM",
-            "packages":["gnome"]
+            "packages":["gnome"],
+            "preconf": []
         },
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "packages":["kde-full"]
+            "packages":["kde-full"],
+            "preconf": []
         },
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "packages":["lxde", "task-lxde-desktop"]
+            "packages":["lxde", "task-lxde-desktop"],
+            "preconf": []
         },
         {
             "name":"LXQT",
             "DM":"LightDM",
-            "packages":["lxqt","breeze-icon-theme","oxygen-icon-theme"]
+            "packages":["lxqt","breeze-icon-theme","oxygen-icon-theme"],
+            "preconf": []
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "packages":["mate-desktop-environment ","mate-desktop-environment-extras"]
+            "packages":["mate-desktop-environment ","mate-desktop-environment-extras"],
+            "preconf": []
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "packages":["task-xfce-desktop"]
+            "packages":["task-xfce-desktop"],
+            "preconf": []
         }
     ]
 }
