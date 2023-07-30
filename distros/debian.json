@@ -73,6 +73,12 @@
             "preconf": []
         },
         {
+            "name":"GNOME-Flashback",
+            "DM":"GDM",
+            "packages":["task-gnome-desktop-flashback"],
+            "preconf": []
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "packages":["kde-full"],
