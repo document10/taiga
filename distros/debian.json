@@ -2,7 +2,7 @@
     "name":"Debian",
     "installer": "apt install -y",
     "services" : "systemctl enable ",
-    "identify" : "which apt",
+    "identify" : "apt list | grep -i debian",
     "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","firmware-iwlwifi","bluez","blueman","network-manager"],
     "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
