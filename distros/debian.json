@@ -3,7 +3,7 @@
     "installer": "apt install -y",
     "services" : "systemctl enable ",
     "identify" : "apt -v",
-    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","bluez","blueman","network-manager","exa","neofetch"],
+    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","bluez","blueman","network-manager","exa","neofetch","micro"],
     "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [

@@ -3,7 +3,7 @@
     "installer": "pacman -Syu --noconfirm",
     "services" : "systemctl enable ",
     "identify" : "which pacman",
-    "base" : ["xorg", "xorg-server", "xterm","avahi" ,"xdg-user-dirs" ,"xdg-utils", "bluez", "bluez-utils", "alsa-utils", "pipewire", "pipewire-alsa" , "pipewire-pulse" ,"pipewire-jack" ,"sof-firmware" ,"blueman" ,"arc-solid-gtk-theme", "arc-gtk-theme","arc-icon-theme","network-manager-applet","gvfs"],
+    "base" : ["xorg", "xorg-server", "xterm","avahi" ,"xdg-user-dirs" ,"xdg-utils", "bluez", "bluez-utils", "alsa-utils", "pipewire", "pipewire-alsa" , "pipewire-pulse" ,"pipewire-jack" ,"sof-firmware" ,"blueman" ,"arc-solid-gtk-theme", "arc-gtk-theme","arc-icon-theme","network-manager-applet","gvfs","exa","neofetch","micro"],
     "pre" : [],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [
