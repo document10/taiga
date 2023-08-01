@@ -1,7 +1,7 @@
 {
     "name":"Debian/Ubuntu",
     "identify" : "apt -v",
-    "pre" : ["sudo dpkg --add-architecture i386","apt update -y","sudo apt upgrade -y","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon"],
+    "pre" : ["sudo dpkg --add-architecture i386","sudo apt update -y","sudo apt upgrade -y","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
