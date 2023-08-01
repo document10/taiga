@@ -1,34 +1,28 @@
-# Packages
 This folder contains JSON files related to every distro,graphics vendor,display manager and desktop environment.These files follow this structure:
 
 ```
 {
     "name":"",
-    "installer": "",
-    "services" : "",
     "identify" : "",
-    "base" : [],
     "pre" : [],
     "post" : [],
     "GD" : [
         {
             "name" : "",
-            "packages" : []
+            "comm" : []
         }
     ],
     "DM":[
         {
             "name":"",
-            "service":"",
-            "packages":[]
+            "comm":[]
         }
     ],
     "DE":[
         {
             "name":"",
             "DM":"",
-            "packages": [],
-            "preconf": []
+            "comm": [],
         }
     ]
 }

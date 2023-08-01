@@ -1,106 +1,96 @@
 {
     "name":"Debian/Ubuntu",
-    "installer": "apt install -y",
-    "services" : "systemctl enable ",
     "identify" : "apt -v",
-    "base" : ["xorg","xinit","pipewire","pipewire-audio","pipewire-pulse","bluez","blueman","network-manager","exa","neofetch","micro","yaru-theme-gtk","yaru-theme-icon"],
-    "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y"],
+    "pre" : ["dpkg --add-architecture i386","apt update -y","apt upgrade -y","apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon"],
     "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
     "GD" : [
         {
             "name" : "AMD",
-            "packages" : ["xserver-xorg-video-amdgpu"]
+            "comm" : ["apt install -y xserver-xorg-video-amdgpu"]
         },
         {
             "name" : "Intel",
-            "packages" : ["xserver-xorg-video-intel"]
+            "comm" : ["apt install -y xserver-xorg-video-intel"]
         },
         {
             "name" : "Nvidia",
-            "packages" : ["xserver-xorg-video-nouveau"]
+            "comm" : ["apt install -y xserver-xorg-video-nouveau"]
         },
         {
             "name" : "VM",
-            "packages" : ["xserver-xorg-video-vesa"]
+            "comm" : ["apt install -y xserver-xorg-video-vesa"]
         }
     ],
     "DM":[
         {
             "name":"GDM",
-            "service":"gdm.service",
-            "packages":["gdm3"]
+            "comm":["apt install -y gdm3","systemctl enable gdm.service"]
         },
         {
             "name":"LightDM",
-            "service":"lightdm.service",
-            "packages":["lightdm","lightdm-gtk-greeter"]
+            "comm":["apt install -y lightdm lightdm-gtk-greeter","systemctl enable lightdm.service"]
         },
         {
             "name":"SDDM",
-            "service": "sddm.service",
-            "packages" : ["sddm"]
+            "comm" : ["apt install -y sddm","systemctl enable sddm.service"]
         }
     ],
     "DE":[
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "packages": ["awesome","pcmanfm"],
-            "preconf": []
+            "comm": ["apt install -y awesome pcmanfm"]
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "packages":["budgie-desktop"],
-            "preconf": []
+            "comm":["apt install -y budgie-desktop"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "packages":["task-cinnamon-desktop"],
-            "preconf": []
+            "comm":["apt install -y task-cinnamon-desktop"]
         },
         {
             "name":"Cutefish",
             "DM":"LightDM",
-            "packages":["cutefish-core"],
-            "preconf": []
+            "comm":["apt install -y cutefish-core"]
         },
         {
             "name":"GNOME",
             "DM":"GDM",
-            "packages":["task-gnome-desktop","task-gnome-flashback-desktop"],
-            "preconf": []
+            "comm":["apt install -y task-gnome-desktop"]
         },
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "packages":["kde-full"],
-            "preconf": []
+            "comm":["apt install -y kde-full"]
         },
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "packages":["lxde", "task-lxde-desktop"],
-            "preconf": []
+            "comm":["apt install -y lxde task-lxde-desktop"]
         },
         {
             "name":"LXQT",
             "DM":"LightDM",
-            "packages":["task-lxqt-desktop","breeze-icon-theme","oxygen-icon-theme"],
-            "preconf": []
+            "comm":["apt install -y task-lxqt-desktop breeze-icon-theme oxygen-icon-theme"]
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "packages":["task-mate-desktop ","mate-desktop-environment-extras"],
-            "preconf": []
+            "comm":["apt install -y task-mate-desktop mate-desktop-environment-extras"]
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "packages":["task-xfce-desktop"],
-            "preconf": []
+            "comm":["apt install -y task-xfce-desktop"]
+        }
+    ],
+    "extra" : [
+        {
+            "name" : "Configure extra sources",
+            "comm" : ["apt install flatpak snapd","flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","snap install core"]
         }
     ]
 }

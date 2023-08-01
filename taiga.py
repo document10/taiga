@@ -36,7 +36,7 @@ build = {
     "base_pkgs":0
 }
 
-def run_task(task):
+def run_comm(task):
     if mode == 1:
         os.system(task)
     else:
@@ -151,6 +151,15 @@ else:
     print("Installation aborted.")
     exit()
 
+#Extra tasks
+tasks = []
+i=0
+for t in distro["extra"]:
+    ch = input(t["name"]+"?(y/n)").lower()
+    if ch == "y":
+        tasks.append(i)
+    i+=1
+
 print("Final options:")
 print("Distro:"+distro["name"])
 if build["GD"]!=-1:
@@ -161,48 +170,41 @@ if build["DE"]!=-1:
     print("Desktop Environment:"+distro["DE"][build["DE"]]["name"])
 ok = input("Confirm?(y/n)").lower()
 if ok == "y":
-    services = ""
     print("Preconfiguring system")
     for c in distro["pre"]:
-        run_task(c)
-    install = distro["installer"]
-    for b in distro["base"]:
-        install += " " + b
-    print("Installing base packages")
-    run_task(install)
+        run_comm(c)
     print("Installing drivers")
-    install = distro["installer"]
     if build["GD"]!=-1:
-        for g in distro["GD"][build["GD"]]["packages"]:
-            install += " " + g
-        run_task(install)
+        for g in distro["GD"][build["GD"]]["comm"]:
+            run_comm(g)
     else:
         print("Skipped")
     print("Installing display manager")
-    install = distro["installer"]
     if build["DM"]!=-1:
-        for d in distro["DM"][build["DM"]]["packages"]:
-            install += " " + d
-        run_task(install)
-        services = distro["services"]+ distro["DM"][build["DM"]]["service"]
-        run_task(services)
+        for d in distro["DM"][build["DM"]]["comm"]:
+            run_comm(d)
     else:
         print("Skipped")
 
     print("Installing desktop environment")
-    install = distro["installer"]
     if build["DE"]!=-1:
-        for c in distro["DE"][build["DE"]]["preconf"]:
-            run_task(c)
-        for e in distro["DE"][build["DE"]]["packages"]:
-            install += " " + e
-        run_task(install)
+        for c in distro["DE"][build["DE"]]["comm"]:
+            run_comm(c)
     else:
         print("Skipped")
     
+    print("Performing extra tasks")
+    if len(tasks) == 0:
+        print("Skipped")
+    else:
+        for t in tasks:
+            cmd = distro["extra"][t]["comm"]
+            for c in cmd:
+                run_comm(c)
+
     print("Final configuration")
     for c in distro["post"]:
-        run_task(c)
+        run_comm(c)
     
     print("Installation completed.Reboot the system to enter your new GUI!")
 else:
