@@ -100,7 +100,7 @@
     "extra" : [
         {
             "name":"Configure extra sources",
-            "comm":["sudo pacman -Syu --noconfirm cargo flatpak","cd ..", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -Syu --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         }
     ]
 }
