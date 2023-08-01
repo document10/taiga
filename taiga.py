@@ -9,7 +9,7 @@ import subprocess
 distros = []
 distro = {}
 id = -1
-mode = 0
+mode = 1
 workdir = Path.cwd()
 dirs = os.listdir(str(workdir)+"/distros")
 dirs.remove('distros.md')
@@ -159,6 +159,10 @@ if build["DM"]!=-1:
     print("Display Manager:"+distro["DM"][build["DM"]]["name"])
 if build["DE"]!=-1:
     print("Desktop Environment:"+distro["DE"][build["DE"]]["name"])
+if len(tasks) != 0:
+    print("Extra tasks:")
+    for t in tasks:
+        print(distro["extra"][t]["name"])
 ok = input("Confirm?(y/n)").lower()
 if ok == "y":
     print("Preconfiguring system")
