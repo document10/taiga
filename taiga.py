@@ -19,15 +19,6 @@ for d in dirs:
     distros.append(j)
     file.close() #Closing the file prevents any errors after we're done with the file.
 
-#Check if the user is logged in as root
-if os.getuid() != 0:
-    print("WARNING!")
-    print("The script is not running as root.Therefore,the script will run in \"simulation mode\",which will only show you the commands that would be executed.")
-    mode = 0
-else:
-    print("Running as root.")
-    mode = 1
-
 build = {
     "distro":-1,
     "GD":-1,

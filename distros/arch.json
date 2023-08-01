@@ -1,106 +1,106 @@
 {
     "name":"Arch Linux",
     "identify" : "which pacman",
-    "pre" : ["pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman arc-solid-gtk-theme arc-gtk-theme arc-icon-theme network-manager-applet gvfs exa neofetch micro"],
-    "post" : ["systemctl enable bluetooth","systemctl set-default graphical.target"],
+    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman arc-solid-gtk-theme arc-gtk-theme arc-icon-theme network-manager-applet gvfs exa neofetch micro"],
+    "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
             "name" : "AMD",
-            "comm" : ["pacman -Syu --noconfirm xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "Intel",
-            "comm" : ["pacman -Syu --noconfirm xf86-video-intel lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-intel lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "Nvidia",
-            "comm" : ["pacman -Syu --noconfirm xf86-video-nouveau nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-nouveau nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "VM",
-            "comm" : ["pacman -Syu --noconfirm xf86-video-vesa"]
+            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-vesa"]
         }
     ],
     "DM":[
         {
             "name":"GDM",
-            "comm":["pacman -Syu --noconfirm gdm","systemctl enable gdm.service"]
+            "comm":["sudo pacman -Syu --noconfirm gdm","systemctl enable gdm.service"]
         },
         {
             "name":"LightDM",
-            "comm":["pacman -Syu --noconfirm lightdm lightdm-gtk-greeter","systemctl enable lightdm.service"]
+            "comm":["sudo pacman -Syu --noconfirm lightdm lightdm-gtk-greeter","systemctl enable lightdm.service"]
         },
         {
             "name":"SDDM",
-            "comm" : ["pacman -Syu --noconfirm sddm","systemctl enable sddm.service"]
+            "comm" : ["sudo pacman -Syu --noconfirm sddm","systemctl enable sddm.service"]
         }
     ],
     "DE":[
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["pacman -Syu --noconfirm awesome pcmanfm"]
+            "comm": ["sudo pacman -Syu --noconfirm awesome pcmanfm"]
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
+            "comm":["sudo pacman -Syu --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
+            "comm":["sudo pacman -Syu --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
         },
         {
             "name":"Cutefish",
             "DM":"SDDM",
-            "comm":["pacman -Syu --noconfirm cutefish"]
+            "comm":["sudo pacman -Syu --noconfirm cutefish"]
         },
         {
             "name":"Deepin",
             "DM":"SDDM",
-            "comm":["pacman -Syu --noconfirm deepin deepin-kwin deepin-extra"]
+            "comm":["sudo pacman -Syu --noconfirm deepin deepin-kwin deepin-extra"]
         },
         {
             "name":"Enlightenment",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm enlightenment ecrire ephoto evisum rage terminology"]
+            "comm":["sudo pacman -Syu --noconfirm enlightenment ecrire ephoto evisum rage terminology"]
         },
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["pacman -Syu --noconfirm gnome"]
+            "comm":["sudo pacman -Syu --noconfirm gnome"]
         },
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "comm":["pacman -Syu --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm"]
+            "comm":["sudo pacman -Syu --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm"]
         },
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm lxde"]
+            "comm":["sudo pacman -Syu --noconfirm lxde"]
         },
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "comm":["pacman -Syu --noconfirm lxqt breeze-icons oxygen-icons kwin"]
+            "comm":["sudo pacman -Syu --noconfirm lxqt breeze-icons oxygen-icons kwin"]
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm mate mate-extra"]
+            "comm":["sudo pacman -Syu --noconfirm mate mate-extra"]
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "comm":["pacman -Syu --noconfirm xfce4 xfce4-goodies"]
+            "comm":["sudo pacman -Syu --noconfirm xfce4 xfce4-goodies"]
         }
     ],
     "extra" : [
         {
             "name":"Configure extra sources",
-            "comm":["pacman -Syu --noconfirm cargo","cd ..", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","snap install core","pacman -S flatpak","flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -Syu --noconfirm cargo flatpak","cd ..", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         }
     ]
 }
