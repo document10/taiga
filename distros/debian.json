@@ -24,15 +24,15 @@
     "DM":[
         {
             "name":"GDM",
-            "comm":["sudo apt install -y gdm3","systemctl enable gdm.service"]
+            "comm":["sudo apt install -y gdm3","sudo systemctl enable gdm.service"]
         },
         {
             "name":"LightDM",
-            "comm":["sudo apt install -y lightdm lightdm-gtk-greeter","systemctl enable lightdm.service"]
+            "comm":["sudo apt install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
         },
         {
             "name":"SDDM",
-            "comm" : ["sudo apt install -y sddm","systemctl enable sddm.service"]
+            "comm" : ["sudo apt install -y sddm","sudo systemctl enable sddm.service"]
         }
     ],
     "DE":[

@@ -24,15 +24,15 @@
     "DM":[
         {
             "name":"GDM",
-            "comm":["sudo pacman -Syu --noconfirm gdm","systemctl enable gdm.service"]
+            "comm":["sudo pacman -Syu --noconfirm gdm","sudo systemctl enable gdm.service"]
         },
         {
             "name":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm lightdm lightdm-gtk-greeter","systemctl enable lightdm.service"]
+            "comm":["sudo pacman -Syu --noconfirm lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
         },
         {
             "name":"SDDM",
-            "comm" : ["sudo pacman -Syu --noconfirm sddm","systemctl enable sddm.service"]
+            "comm" : ["sudo pacman -Syu --noconfirm sddm","sudo systemctl enable sddm.service"]
         }
     ],
     "DE":[
