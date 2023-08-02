@@ -1,0 +1,100 @@
+{
+    "name":"FreeBSD",
+    "identify" : "pkg -v",
+    "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg bootstrap","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr drm-kmod gtk-arc-themes bsdisks"],
+    "post" : ["sudo sysrc dbus_enable=YES","sudo sysrc hald_enable=YES","sudo sysrc sound_load=YES","sudo sysrc snd_hda_load=YES","sudo sysrc moused_enable=YES","sudo sysrc snd_driver=YES"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "comm" : ["sudo sysrc kld_list+=amdgpu"]
+        },
+        {
+            "name" : "Intel",
+            "comm" : ["sudo pkg install -y libva-intel-driver mesa-libs mesa-dri","sudo sysrc kld_list+=i915kms"]
+        },
+        {
+            "name" : "Nvidia",
+            "comm" : ["sudo pkg install -y nvidia-driver","sudo sysrc kld_list+=nvidia-modeset"]
+        },
+        {
+            "name" : "VirtualBox",
+            "comm" : ["sudo pkg install -y virtualbox-ose-additions","sudo sysrc vboxguest_enable=YES","sudo sysrc vboxservice_enable=YES"]
+        },
+        {
+            "name" : "VESA (BIOS)",
+            "comm" : ["sudo pkg install -y xf86-video-vesa","sudo sysrc kld_list+=vesa"]
+        },
+        {
+            "name" : "SCFB (UEFI)",
+            "comm" : ["sudo pkg install -y xf86-video-scfb","sudo sysrc kld_list+=scfb"]
+        },
+        {
+            "name" : "VMWare",
+            "comm" : ["sudo pkg install -y xf86-video-vmware","sudo sysrc kld_list+=vmwgfx"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "comm":["sudo pkg install -y gdm","sudo sysrc gdm_enable=YES"]
+        },
+        {
+            "name":"LightDM",
+            "comm":["sudo pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings","sudo sysrc lightdm_enable=YES"]
+        },
+        {
+            "name":"SDDM",
+            "comm" : ["sudo pkg install -y sddm","sudo sysrc sddm_enable=YES"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "comm": ["sudo pkg install -y awesome pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y budgie budgie-desktop"]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y polkit-gnome cinnamon"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "comm":["sudo pkg install -y gnome3 polkit-gnome"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "comm":["sudo pkg install -y kde5"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y lxde-meta xfce4-wm xfce4-settings"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y lxqt plasma5-kwin plasma5-systemsettings kwinft kf5-kwindowsystem konsole"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y mate mate-themes polkit-gnome"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y polkit-gnome xfce"]
+        }
+    ],
+    "extra" : [
+        
+    ]
+}

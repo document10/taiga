@@ -90,7 +90,7 @@
     "extra" : [
         {
             "name" : "Configure extra sources",
-            "comm" : ["sudo apt install flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "comm" : ["sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
         }
     ]
 }
