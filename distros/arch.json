@@ -6,101 +6,106 @@
     "GD" : [
         {
             "name" : "AMD",
-            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -S --noconfirm xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "Intel",
-            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-intel lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -S --noconfirm xf86-video-intel lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "Nvidia",
-            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-nouveau nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader"]
+            "comm" : ["sudo pacman -S --noconfirm xf86-video-nouveau nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader"]
         },
         {
             "name" : "VM",
-            "comm" : ["sudo pacman -Syu --noconfirm xf86-video-vesa"]
+            "comm" : ["sudo pacman -S --noconfirm xf86-video-vesa"]
         }
     ],
     "DM":[
         {
             "name":"GDM",
-            "comm":["sudo pacman -Syu --noconfirm gdm","sudo systemctl enable gdm.service"]
+            "comm":["sudo pacman -S --noconfirm gdm","sudo systemctl enable gdm.service"]
         },
         {
             "name":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+            "comm":["sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
         },
         {
             "name":"SDDM",
-            "comm" : ["sudo pacman -Syu --noconfirm sddm","sudo systemctl enable sddm.service"]
+            "comm" : ["sudo pacman -S --noconfirm sddm","sudo systemctl enable sddm.service"]
         }
     ],
     "DE":[
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo pacman -Syu --noconfirm awesome pcmanfm"]
+            "comm": ["sudo pacman -S --noconfirm awesome pcmanfm"]
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
+            "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
+            "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
         },
         {
             "name":"Cutefish",
             "DM":"SDDM",
-            "comm":["sudo pacman -Syu --noconfirm cutefish"]
+            "comm":["sudo pacman -S --noconfirm cutefish"]
         },
         {
             "name":"Deepin",
             "DM":"SDDM",
-            "comm":["sudo pacman -Syu --noconfirm deepin deepin-kwin deepin-extra"]
+            "comm":["sudo pacman -S --noconfirm deepin deepin-kwin deepin-extra"]
         },
         {
             "name":"Enlightenment",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm enlightenment ecrire ephoto evisum rage terminology"]
+            "comm":["sudo pacman -S --noconfirm enlightenment ecrire ephoto evisum rage terminology"]
         },
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["sudo pacman -Syu --noconfirm gnome"]
+            "comm":["sudo pacman -S --noconfirm gnome"]
         },
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "comm":["sudo pacman -Syu --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm"]
+            "comm":["sudo pacman -S --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm"]
         },
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm lxde"]
+            "comm":["sudo pacman -S --noconfirm lxde"]
         },
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "comm":["sudo pacman -Syu --noconfirm lxqt breeze-icons oxygen-icons kwin"]
+            "comm":["sudo pacman -S --noconfirm lxqt breeze-icons oxygen-icons kwin"]
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm mate mate-extra"]
+            "comm":["sudo pacman -S --noconfirm mate mate-extra"]
+        },
+        {
+            "name":"Pantheon",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm pantheon"]
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "comm":["sudo pacman -Syu --noconfirm xfce4 xfce4-goodies"]
+            "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies"]
         }
     ],
     "extra" : [
         {
             "name":"Configure extra sources",
-            "comm":["sudo pacman -Syu --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         }
     ]
 }
