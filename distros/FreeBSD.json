@@ -1,7 +1,7 @@
 {
     "name":"FreeBSD",
     "identify" : "pkg -v",
-    "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg bootstrap","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr bsdisks octopkg tela-icon-theme adapta-backgrounds adapta-gtk-theme"],
+    "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr bsdisks octopkg tela-icon-theme adapta-backgrounds adapta-gtk-theme"],
     "post" : ["sudo sysrc dbus_enable=YES","sudo sysrc hald_enable=YES","sudo sysrc sound_load=YES","sudo sysrc snd_hda_load=YES","sudo sysrc moused_enable=YES","sudo sysrc snd_driver=YES"],
     "GD" : [
         {

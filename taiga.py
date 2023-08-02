@@ -165,7 +165,7 @@ if len(tasks) != 0:
         print(distro["extra"][t]["name"])
 ok = input("Confirm?(y/n)").lower()
 if ok == "y":
-    print("Preconfiguring system")
+    print("Configuring base system")
     for c in distro["pre"]:
         run_comm(c)
     print("Installing drivers")
