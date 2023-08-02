@@ -80,8 +80,8 @@
         },
         {
             "name":"LXQT",
-            "DM":"LightDM",
-            "comm":["sudo pkg install -y lxqt plasma5-kwin plasma5-systemsettings kwinft kf5-kwindowsystem konsole"]
+            "DM":"SDDM",
+            "comm":["sudo pkg install -y lxqt plasma5-kwin plasma5-systemsettings kwinft kf5-kwindowsystem konsole plasma5-breeze-gtk plasma5-breeze kf5-breeze-icons"]
         },
         {
             "name":"MATE",
