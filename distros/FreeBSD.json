@@ -66,7 +66,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["sudo pkg install -y gnome3 polkit-gnome"]
+            "comm":["sudo pkg install -y gnome polkit-gnome"]
         },
         {
             "name":"KDE Plasma",
