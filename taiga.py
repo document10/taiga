@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 from pathlib import Path
 from re import search
+from operator import itemgetter
 import os
 import json
 import subprocess
-
+import sys
 #Serialize all info related to distros
 distros = []
 distro = {}
@@ -24,14 +25,44 @@ build = {
     "GD":-1,
     "DM":-1,
     "DE":-1,
-    "base_pkgs":0
+    "tasks":[]
 }
 
-def run_comm(task):
-    if mode == 1:
-        os.system(task)
+if len(sys.argv) > 1:
+    if sys.argv[1].lower() == "s":
+        mode = 0
+        print("Running in simulation mode,no changes will be made to your system.")
+    elif sys.argv[1].lower() == "r":
+        print("Running normally.")
+        mode = 1
+    elif sys.argv[1].lower() == "d":
+        print("Running in debug mode.")
+        mode = 2
+    elif sys.argv[1].lower() =="h":
+        print("./taiga.py [args]")
+        print("python taiga.py [args]")
+        print("python3 taiga.py [args]")
+        print("Note:arguments are not case sensitive.")
+        print("")
+        print("Argument 1:")
+        print("s : Simulation mode-no changes will be done to the system")
+        print("d : Debug mode-shows the commands and then runs them")
+        print("r : Runs the script normally,same as with no arguments")
+        print("h : shows this screen and exits")
+        exit()
     else:
-        print(task)
+        print("Invalid argument")
+        exit()
+
+
+def run_comm(comm):
+    if mode ==0:
+        print(comm)
+    elif mode == 1:
+        os.system(comm)
+    elif mode == 2:
+        print(comm)
+        os.system(comm)
 
 print("1.Express install:Automatically detect the distro,GPU and installs the desired desktop environment with the reccomended display manager")
 print("2.Custom  install:Select all options manually")
@@ -39,6 +70,7 @@ ins_type = input("Select installation type(0 to abort):")
 
 if ins_type == "1":
     #Identifying the distro
+    distros = sorted(distros, key=itemgetter('order')) 
     i = 0
     while id==-1 and i <len(distros):
         c = os.system(distros[i]["identify"])
@@ -79,11 +111,13 @@ if ins_type == "1":
         print("Invalid option")
         exit()
     i=0
+
     for dm in distro["DM"]:
         if dm["name"] == distro["DE"][build["DE"]]["DM"]:
             build["DM"]=i
         i+=1
 elif ins_type=="2":
+    distros = sorted(distros, key=itemgetter('name')) 
     i=1
     for d in distros:
         print(str(i)+"."+d["name"])
@@ -143,12 +177,11 @@ else:
     exit()
 
 #Extra tasks
-tasks = []
 i=0
-for t in distro["extra"]:
+for t in distro["tasks"]:
     ch = input(t["name"]+"?(y/n)").lower()
     if ch == "y":
-        tasks.append(i)
+        build["tasks"].append(i)
     i+=1
 
 print("Final options:")
@@ -159,10 +192,10 @@ if build["DM"]!=-1:
     print("Display Manager:"+distro["DM"][build["DM"]]["name"])
 if build["DE"]!=-1:
     print("Desktop Environment:"+distro["DE"][build["DE"]]["name"])
-if len(tasks) != 0:
+if len(build["tasks"]) != 0:
     print("Extra tasks:")
-    for t in tasks:
-        print(distro["extra"][t]["name"])
+    for t in build["tasks"]:
+        print(distro["tasks"][t]["name"])
 ok = input("Confirm?(y/n)").lower()
 if ok == "y":
     print("Configuring base system")
@@ -189,11 +222,11 @@ if ok == "y":
         print("Skipped")
     
     print("Performing extra tasks")
-    if len(tasks) == 0:
+    if len(build["tasks"]) == 0:
         print("Skipped")
     else:
-        for t in tasks:
-            cmd = distro["extra"][t]["comm"]
+        for t in build["tasks"]:
+            cmd = distro["tasks"][t]["comm"]
             for c in cmd:
                 run_comm(c)
 

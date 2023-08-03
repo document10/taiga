@@ -1,7 +1,8 @@
 {
-    "name":"Debian/Ubuntu",
+    "name":"Debian",
     "identify" : "apt -v",
-    "pre" : ["sudo dpkg --add-architecture i386","sudo apt update -y","sudo apt upgrade -y","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon"],
+    "order" : 2,
+    "pre" : ["sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -17,7 +18,11 @@
             "comm" : ["sudo apt install -y xserver-xorg-video-nouveau"]
         },
         {
-            "name" : "VM",
+            "name" : "VMware",
+            "comm" : ["sudo apt install -y xserver-xorg-video-vmware"]
+        },
+        {
+            "name" : "VESA",
             "comm" : ["sudo apt install -y xserver-xorg-video-vesa"]
         }
     ],
@@ -87,10 +92,10 @@
             "comm":["sudo apt install -y task-xfce-desktop"]
         }
     ],
-    "extra" : [
+    "tasks" : [
         {
             "name" : "Configure extra sources",
-            "comm" : ["sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "comm" : ["sudo dpkg --add-architecture i386","sudo apt update","sudo apt upgrade","sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
         }
     ]
 }

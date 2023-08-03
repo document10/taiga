@@ -4,6 +4,7 @@ This folder contains JSON files related to every distro,graphics vendor,display 
 {
     "name":"",
     "identify" : "",
+    "order" : 0,
     "pre" : [],
     "post" : [],
     "GD" : [

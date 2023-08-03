@@ -1,0 +1,151 @@
+{
+    "name":"Ubuntu",
+    "identify" : "apt search xubuntu",
+    "order" : 1,
+    "pre" : ["sudo apt update","sudo apt upgrade","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon software-properties-common"],
+    "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "comm" : ["sudo add-apt-repository ppa:kisak/kisak-mesa","sudo apt update","sudo apt install -y xserver-xorg-video-amdgpu libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386"]
+        },
+        {
+            "name" : "Intel",
+            "comm" : ["sudo add-apt-repository ppa:kisak/kisak-mesa","sudo apt update","sudo apt install -y xserver-xorg-video-intel libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386"]
+        },
+        {
+            "name" : "Nvidia",
+            "comm" : ["sudo add-apt-repository ppa:graphics-drivers/ppa","sudo apt update","sudo apt install -y nvidia-driver-515 libvulkan1 libvulkan1:i386"]
+        },
+        {
+            "name" : "VMware",
+            "comm" : ["sudo apt install -y xserver-xorg-video-vmware"]
+        },
+        {
+            "name" : "VESA",
+            "comm" : ["sudo apt install -y xserver-xorg-video-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "comm":["sudo apt install -y gdm3","sudo systemctl enable gdm.service"]
+        },
+        {
+            "name":"LightDM",
+            "comm":["sudo apt install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+        },
+        {
+            "name":"SDDM",
+            "comm" : ["sudo apt install -y sddm","sudo systemctl enable sddm.service"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "comm": ["sudo apt install -y awesome pcmanfm"]
+        },
+        {
+            "name":"Budgie (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y ubuntu-budgie-desktop"]
+        },
+        {
+            "name":"Budgie (Vanilla)",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y budgie-desktop"]
+        },
+        {
+            "name":"Cinnamon (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y ubuntucinnamon-desktop"]
+        },
+        {
+            "name":"Cinnamon (Vanilla)",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y task-cinnamon-desktop"]
+        },
+        {
+            "name":"Cutefish",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y cutefish-core"]
+        },
+        {
+            "name":"Deepin",
+            "DM":"SDDM",
+            "comm":["sudo add-apt-repository ppa:ubuntudde-dev/stable","sudo apt update","sudo apt install -y ubuntudde-dde"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo add-apt-repository ppa:niko2040/e19","sudo apt update","sudo apt install -y enlightenment"]
+        },
+        {
+            "name":"GNOME (Ubuntu-Branded)",
+            "DM":"",
+            "comm":["sudo apt install -y ubuntu-gnome-desktop"]
+        },
+        {
+            "name":"GNOME (Vanilla)",
+            "DM":"GDM",
+            "comm":["sudo apt install -y task-gnome-desktop"]
+        },
+        {
+            "name":"KDE Plasma (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y kubuntu-desktop"]
+        },
+        {
+            "name":"KDE Plasma (Vanilla)",
+            "DM":"SDDM",
+            "comm":["sudo apt install -y kde-full"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y lxde task-lxde-desktop"]
+        },
+        {
+            "name":"LXQT (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y lubuntu-desktop breeze-icon-theme oxygen-icon-theme"]
+        },
+        {
+            "name":"LXQT (Vanilla)",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y task-lxqt-desktop breeze-icon-theme oxygen-icon-theme"]
+        },
+        {
+            "name":"MATE (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y ubuntu-mate-desktop mate-desktop-environment-extras"]
+        },
+        {
+            "name":"MATE (Vanilla)",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
+        },
+        {
+            "name":"Pantheon",
+            "DM":"LightDM",
+            "comm":["sudo add-apt-repository ppa:elementary-os/daily","sudo apt update","sudo apt install -y elementary-icon-theme elementary-default-settings elementary-desktop"]
+        },
+        {
+            "name":"XFCE (Ubuntu-branded)",
+            "DM":"",
+            "comm":["sudo apt install -y xubuntu-desktop"]
+        },
+        {
+            "name":"XFCE (Vanilla)",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y task-xfce-desktop"]
+        }
+    ],
+    "tasks" : [
+        {
+            "name" : "Configure extra sources",
+            "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade","sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+        }
+    ]
+}
