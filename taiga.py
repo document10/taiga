@@ -87,9 +87,9 @@ if ins_type == "1":
 
     #Identifying GPU
     i=0
-    video =  str(subprocess.check_output(["sh", "get_gpu.sh"]))
+    video =  str(subprocess.check_output(["sh", "get_gpu.sh"])).lower()
     for v in distro["GD"]:
-        if search(v["name"],video):
+        if search(v["name"].lower(),video):
             build["GD"] = i
         i+=1
     if build["GD"]==-1:

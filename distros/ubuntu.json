@@ -1,6 +1,6 @@
 {
     "name":"Ubuntu",
-    "identify" : "apt search xubuntu",
+    "identify" : "add-apt-repository",
     "order" : 1,
     "pre" : ["sudo apt update","sudo apt upgrade","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro yaru-theme-gtk yaru-theme-icon software-properties-common"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
