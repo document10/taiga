@@ -2,10 +2,12 @@
 from pathlib import Path
 from re import search
 from operator import itemgetter
+import time
 import os
 import json
 import subprocess
 import sys
+import math
 #Serialize all info related to distros
 distros = []
 distro = {}
@@ -13,9 +15,10 @@ id = -1
 mode = 1
 workdir = Path.cwd()
 dirs = os.listdir(str(workdir)+"/distros")
+sim = ""
 dirs.remove('distros.md')
 for d in dirs:
-    file = open(str(workdir)+"/distros/"+d)
+    file = open(str(workdir)+"/distros/"+d,"r")
     j = json.loads(file.read())
     distros.append(j)
     file.close() #Closing the file prevents any errors after we're done with the file.
@@ -32,6 +35,7 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "s":
         mode = 0
         print("Running in simulation mode,no changes will be made to your system.")
+        sim = open(str(math.ceil(time.time())), "x")
     elif sys.argv[1].lower() == "r":
         print("Running normally.")
         mode = 1
@@ -57,7 +61,8 @@ if len(sys.argv) > 1:
 
 def run_comm(comm):
     if mode ==0:
-        print(comm)
+        sim.write(comm)
+        sim.write("\n")
     elif mode == 1:
         os.system(comm)
     elif mode == 2:
@@ -233,7 +238,10 @@ if ok == "y":
     print("Final configuration")
     for c in distro["post"]:
         run_comm(c)
-    
-    print("Installation completed.Reboot the system to enter your new GUI!")
+    if mode ==0:
+        print("All commands have been saved to " + sim.name)
+    else:
+        print("Installation completed.Reboot the system to enter your new GUI!")
 else:
     print("Installation aborted.")
+
