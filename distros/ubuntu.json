@@ -73,7 +73,7 @@
         },
         {
             "name":"Deepin",
-            "DM":"SDDM",
+            "DM":"",
             "comm":["sudo add-apt-repository ppa:ubuntudde-dev/stable","sudo apt update","sudo apt install -y ubuntudde-dde"]
         },
         {
