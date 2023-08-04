@@ -35,7 +35,7 @@ if len(sys.argv) > 1:
     if sys.argv[1].lower() == "s":
         mode = 0
         print("Running in simulation mode,no changes will be made to your system.")
-        sim = open(str(math.ceil(time.time())), "x")
+        sim = open("taiga_"+str(math.ceil(time.time())), "x")
     elif sys.argv[1].lower() == "r":
         print("Running normally.")
         mode = 1
