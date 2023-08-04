@@ -61,6 +61,7 @@ if len(sys.argv) > 1:
 
 def run_comm(comm):
     if mode ==0:
+        print(comm)
         sim.write(comm)
         sim.write("\n")
     elif mode == 1:
