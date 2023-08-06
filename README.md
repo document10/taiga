@@ -1,10 +1,9 @@
+**Warning: This is the developement branch.Changes here may not be fully tested,so I recommend using the `master` branch for more critical installs.**
 # TAIGA
 Taiga or Terminal Application for Installing Graphical Appliances is a terminal script for configuring a desktop environment on the system.
 
 ## Status:Alpha
-
 The script is currrently in an alpha state.Use on a production machine is not recommended for the following reasons:
-
 - More testing needs to be done
 - Desktop Environment support is inconsistent across distros
 - The script has some dependencies needed before running
@@ -18,16 +17,11 @@ The script is currrently in an alpha state.Use on a production machine is not re
 Aditionally you can run the script in diffrent modes by adding these arguments after the script:
 
 **Argument 1:**
-
 - *s* : Simulation mode-no changes will be done to the system
-
 - *d* : Debug mode-shows the commands and then runs them
-
 - *r* : Runs the script normally,same as with no arguments
-
 - *h* : shows this screen and exits
 ## Prerequisites
-
 The script requires `python`,`sudo` and `pciutils` in order to run.To configure sudo you can use the following guides:
 
 Linux: https://www.linuxteck.com/steps-to-configure-sudo-in-linux/
