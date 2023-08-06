@@ -2,7 +2,7 @@
     "name":"Arch Linux",
     "identify" : "which pacman",
     "order" : 0,
-    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman arc-solid-gtk-theme arc-gtk-theme arc-icon-theme network-manager-applet gvfs exa neofetch micro"],
+    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -110,7 +110,11 @@
     "tasks" : [
         {
             "name":"Configure extra sources",
-            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru","makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd","makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si","git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+        },
+        {
+            "name":"Install recommended packages",
+            "comm":["sudo pacman -S --noconfirm vlc firefox libreoffice-still"]
         }
     ]
 }
