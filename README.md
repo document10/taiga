@@ -6,17 +6,14 @@ Taiga or Terminal Application for Installing Graphical Appliances is a terminal 
 The script is currrently in an alpha state.Use on a production machine is not recommended for the following reasons:
 
 - More testing needs to be done
-
 - Desktop Environment support is inconsistent across distros
-
-- The script has python and sudo (among other packages,for some distros) as a dependency
-
+- The script has some dependencies needed before running
 - Methods for detecting distros/GPUs (for the express installer) may be inaccurate
 
 ## Installer types
 **1.Express install:** The script will detect the distro and the GPU used,and you can pick the desktop environment,which will be installed with the appropriate display manager.
 
-**2.Custom install:** Pick all options manually.Useful if auto-detection doesn't work.
+**2.Custom install:** Pick all options manually.Useful if auto-detection doesn't work or if some components are not needed
 
 Aditionally you can run the script in diffrent modes by adding these arguments after the script:
 
@@ -33,15 +30,19 @@ Aditionally you can run the script in diffrent modes by adding these arguments a
 
 The script requires `python`,`sudo` and `pciutils` in order to run.To configure sudo you can use the following guides:
 
-https://www.linuxteck.com/steps-to-configure-sudo-in-linux/
+Linux: https://www.linuxteck.com/steps-to-configure-sudo-in-linux/
 
-https://www.cyberciti.biz/faq/freebsd-install-sudo-command/
+FreeBSD: https://www.cyberciti.biz/faq/freebsd-install-sudo-command/
 
 Here are commands for installing these dependencies on the supported distros:
-
 ### Arch Linux
 ```sh
 sudo pacman -S python sudo pciutils
+```
+Aditionally make sure that the `multilib` repository is enabled,as this is where most graphics drivers are pulled from.To do that uncomment these lines (remove the `#` symbol before each line) in `/etc/pacman.conf`:
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist
 ```
 ### Debian/Ubuntu
 
@@ -57,7 +58,7 @@ sudo pkg install python sudo pciutils
 ## Running the script
 Currently there are two ways to run the script:
 
-**Method 1:Using python**
+### Method 1:Using python
 ```sh
 python3 taiga.py [args]
 ```
@@ -66,9 +67,9 @@ or
 python taiga.py [args]
 ```
 
-**Method 2:Using shell commands**
+### Method 2:Using shell commands
 ```sh
-chmod +X taiga.py
+chmod +X taiga.py #only run once
 ./taiga.py [args]
 ```
-Note:This method does not work on FreeBSD as all user-installed binaries are stored in `/usr/local/bin`,as opposed to `/usr/bin`.FreeBSD users must use *Method 1* .
+Note:This method does not work on FreeBSD as all user-installed binaries are stored in `/usr/local/bin`,as opposed to `/usr/bin`.FreeBSD users must use **Method 1**.

@@ -103,7 +103,7 @@
     "tasks" : [
         {
             "name":"Install recommended packages",
-            "comm":["sudo pkg install vlc firefox libreoffice"]
+            "comm":["sudo pkg -y install vlc firefox libreoffice"]
         }
     ]
 }

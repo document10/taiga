@@ -149,7 +149,7 @@
         },
         {
             "name":"Install recommended packages",
-            "comm":["sudo apt install vlc firefox libreoffice"]
+            "comm":["sudo apt install -y vlc firefox libreoffice"]
         }
     ]
 }
