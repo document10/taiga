@@ -97,6 +97,8 @@ def run_comm(comm):
         print(comm)
         os.system(comm)
 
+distros = sorted(distros, key=itemgetter('order')) 
+
 if load == 0:
     print("1.Express install:Automatically detect the distro,GPU and installs the desired desktop environment with the reccomended display manager")
     print("2.Custom  install:Select all options manually")
@@ -108,7 +110,6 @@ if load == 0:
 
     if ins_type == 1:
         #Identifying the distro
-        distros = sorted(distros, key=itemgetter('order')) 
         i = 0
         while id==-1 and i <len(distros):
             c = os.system(distros[i]["identify"])
@@ -154,8 +155,7 @@ if load == 0:
             if dm["name"] == distro["DE"][build["DE"]]["DM"]:
                 build["DM"]=i
             i+=1
-    elif ins_type==2:
-        distros = sorted(distros, key=itemgetter('name')) 
+    elif ins_type==2: 
         i=1
         for d in distros:
             print(str(i)+"."+d["name"])
@@ -213,12 +213,11 @@ if load == 0:
         print("Installation aborted.")
         exit()
     #Extra tasks
-    
     i=0
     for t in distro["tasks"]:
         ch = input(t["name"]+"?(y/n)").lower()
         if ch == "y":
-            build["tasks"].append(i-1)
+            build["tasks"].append(i)
         i+=1
 
 print("Final options:")
