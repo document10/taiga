@@ -213,13 +213,13 @@ if load == 0:
         print("Installation aborted.")
         exit()
     #Extra tasks
-    if ins_type == 1 or ins_type == 2: 
-        i=0
-        for t in distro["tasks"]:
-            ch = input(t["name"]+"?(y/n)").lower()
-            if ch == "y":
-                build["tasks"].append(i)
-            i+=1
+    
+    i=0
+    for t in distro["tasks"]:
+        ch = input(t["name"]+"?(y/n)").lower()
+        if ch == "y":
+            build["tasks"].append(i-1)
+        i+=1
 
 print("Final options:")
 print("Distro:"+distro["name"])
@@ -236,7 +236,8 @@ if len(build["tasks"]) != 0:
 
 print("1.Confirm and install")
 print("2.Save config to file and exit")
-print("3.Simulate commands")
+if mode == 1:
+    print("3.Simulate commands")
 try:
     ok = int(input("Select action(0 to abort):"))
 except:
