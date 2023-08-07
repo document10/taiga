@@ -29,6 +29,7 @@ try:
 except:
     print("ERROR:The script couldn't load all required files propperly.This could be because some files are missing or corrupt.Reinstall the script and try again.")
     exit(1)
+distros = sorted(distros, key=itemgetter('order'))
 
 build = {
     "distro":-1,
@@ -97,7 +98,7 @@ def run_comm(comm):
         print(comm)
         os.system(comm)
 
-distros = sorted(distros, key=itemgetter('order')) 
+ 
 
 if load == 0:
     print("1.Express install:Automatically detect the distro,GPU and installs the desired desktop environment with the reccomended display manager")
