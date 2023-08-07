@@ -1,8 +1,8 @@
 {
     "name":"OpenSUSE",
-    "identify" : "zypper -v",
+    "identify" : "which zypper",
     "order" : 4,
-    "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch"],
+    "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch xterm"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
