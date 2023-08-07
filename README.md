@@ -16,10 +16,10 @@ The script is currrently in an alpha state.Use on a production machine is not re
 
 Aditionally you can run the script in diffrent modes by adding these arguments after the script:
 
-**Argument 1:**
 - *s* : Simulation mode-no changes will be done to the system
-- *d* : Debug mode-shows the commands and then runs them
-- *r* : Runs the script normally,same as with no arguments
+- *l* [`filepath`]: loads configuration from the file specified in [filepath]
+- *sl* / *ls* [`filepath`]: loads configuration from the file specified in [filepath] and enters Simulation mode
+
 - *h* : shows this screen and exits
 ## Prerequisites
 The script requires `python`,`sudo` and `pciutils` in order to run.To configure sudo you can use the following guides:
