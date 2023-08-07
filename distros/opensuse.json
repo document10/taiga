@@ -57,6 +57,16 @@
             "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
         },
         {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y enlightenment ecrire ephoto evisum rage terminology"]
+        },
+        {
+            "name":"Deepin",
+            "DM":"SDDM",
+            "comm":["sudo zypper in -t pattern deepin"]
+        },
+        {
             "name":"GNOME",
             "DM":"GDM",
             "comm":["sudo zypper install -y gnome"]
@@ -90,10 +100,10 @@
     "tasks" : [
         {
             "name" : "Configure extra sources",
-            "comm" : ["sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install -y core"]
+            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install -y core"]
         },
         {
-            "name":"Install -y recommended packages",
+            "name":"Install recommended packages",
             "comm":["sudo zypper install -y vlc firefox libreoffice"]
         }
     ]
