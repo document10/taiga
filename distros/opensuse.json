@@ -57,14 +57,14 @@
             "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
         },
         {
-            "name":"Enlightenment",
-            "DM":"LightDM",
-            "comm":["sudo zypper install -y enlightenment ecrire ephoto evisum rage terminology"]
-        },
-        {
             "name":"Deepin",
             "DM":"SDDM",
             "comm":["sudo zypper in -y -t pattern deepin"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y enlightenment ecrire ephoto evisum rage terminology"]
         },
         {
             "name":"GNOME",
@@ -100,7 +100,7 @@
     "tasks" : [
         {
             "name" : "Configure extra sources",
-            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install -y core"]
+            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
         },
         {
             "name":"Install recommended packages",
