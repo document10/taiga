@@ -64,7 +64,7 @@
         {
             "name":"Deepin",
             "DM":"SDDM",
-            "comm":["sudo zypper in -t pattern deepin"]
+            "comm":["sudo zypper in -y -t pattern deepin"]
         },
         {
             "name":"GNOME",
