@@ -84,7 +84,7 @@
         {
             "name":"LXQT",
             "DM":"LightDM",
-            "comm":["sudo zypper install -y -t pattern lxqt breeze-icon-theme oxygen-icon-theme"]
+            "comm":["sudo zypper install -y -t pattern lxqt"]
         },
         {
             "name":"MATE",
@@ -105,6 +105,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo zypper install -y vlc firefox libreoffice"]
+        },
+        {
+            "name":"Reboot after install",
+            "comm":["sudo reboot"]
         }
     ]
 }

@@ -115,6 +115,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo pacman -S --noconfirm vlc firefox libreoffice-still"]
+        },
+        {
+            "name":"Reboot after install",
+            "comm":["sudo reboot"]
         }
     ]
 }

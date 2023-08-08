@@ -145,6 +145,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo apt install -y vlc firefox libreoffice"]
+        },
+        {
+            "name":"Reboot after install",
+            "comm":["sudo reboot"]
         }
     ]
 }
