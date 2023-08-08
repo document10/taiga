@@ -59,7 +59,7 @@
         {
             "name":"Deepin",
             "DM":"LightDM",
-            "comm":["sudo zypper install -y -t pattern deepin"]
+            "comm":["sudo zypper install -t pattern deepin"]
         },
         {
             "name":"Enlightenment",
