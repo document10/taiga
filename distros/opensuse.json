@@ -57,6 +57,11 @@
             "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
         },
         {
+            "name":"Cutefish",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y -t pattern cutefish"]
+        },
+        {
             "name":"Deepin",
             "DM":"LightDM",
             "comm":["sudo zypper install -y -t pattern deepin"]
