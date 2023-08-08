@@ -83,7 +83,7 @@
         },
         {
             "name":"LXQT",
-            "DM":"LightDM",
+            "DM":"SDDM",
             "comm":["sudo zypper install -y -t pattern lxqt"]
         },
         {
