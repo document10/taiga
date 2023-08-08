@@ -59,7 +59,7 @@
         {
             "name":"Enlightenment",
             "DM":"LightDM",
-            "comm":["sudo zypper install -y enlightenment ecrire ephoto evisum rage terminology"]
+            "comm":["sudo zypper install -y enlightenment ephoto rage terminology"]
         },
         {
             "name":"GNOME",
