@@ -57,6 +57,11 @@
             "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
         },
         {
+            "name":"Deepin",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y -t pattern deepin"]
+        },
+        {
             "name":"Enlightenment",
             "DM":"LightDM",
             "comm":["sudo zypper install -y enlightenment ephoto rage terminology"]
@@ -74,7 +79,7 @@
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "comm":["sudo zypper install -y lxde"]
+            "comm":["sudo zypper install -y -t pattern lxde"]
         },
         {
             "name":"LXQT",
