@@ -57,11 +57,6 @@
             "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
         },
         {
-            "name":"Deepin",
-            "DM":"SDDM",
-            "comm":["sudo zypper in -y -t pattern deepin"]
-        },
-        {
             "name":"Enlightenment",
             "DM":"LightDM",
             "comm":["sudo zypper install -y enlightenment ecrire ephoto evisum rage terminology"]

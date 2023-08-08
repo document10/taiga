@@ -67,11 +67,6 @@
             "comm":["sudo apt install -y task-cinnamon-desktop"]
         },
         {
-            "name":"Cutefish",
-            "DM":"LightDM",
-            "comm":["sudo apt install -y cutefish-core"]
-        },
-        {
             "name":"Deepin",
             "DM":"",
             "comm":["sudo add-apt-repository ppa:ubuntudde-dev/stable","sudo apt update","sudo apt install -y ubuntudde-dde"]
