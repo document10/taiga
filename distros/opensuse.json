@@ -64,7 +64,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["sudo zypper install -y gnome"]
+            "comm":["sudo zypper install -y -t pattern gnome"]
         },
         {
             "name":"KDE Plasma",
