@@ -58,7 +58,7 @@
         },
         {
             "name":"Deepin",
-            "DM":"LightDM",
+            "DM":"SDDM",
             "comm":["sudo zypper install -t pattern deepin"]
         },
         {
