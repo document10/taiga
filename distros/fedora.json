@@ -1,0 +1,115 @@
+{
+    "name":"OpenSUSE",
+    "identify" : "which dnf",
+    "order" : 5,
+    "pre" : ["sudo dnf update","sudo dnf upgrade --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber"],
+    "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "comm" : ["sudo dnf install -y xorg-x11-drv-amdgpu"]
+        },
+        {
+            "name" : "Intel",
+            "comm" : ["sudo dnf install -y xorg-x11-drv-intel"]
+        },
+        {
+            "name" : "Nvidia",
+            "comm" : ["sudo dnf install fedora-workstation-repositories","sudo dnf config-manager --set-enabled rpmfusion-nonfree-nvidia-driver","sudo dnf install -y xorg-x11-drv-nouveau"]
+        },
+        {
+            "name" : "VMware",
+            "comm" : ["sudo dnf install -y xorg-x11-drv-vmware"]
+        },
+        {
+            "name" : "VESA",
+            "comm" : ["sudo dnf install -y xorg-x11-drv-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "comm":["sudo dnf install -y gdm","sudo systemctl enable gdm.service"]
+        },
+        {
+            "name":"LightDM",
+            "comm":["sudo dnf install -y lightdm lightdm-gtk","sudo systemctl enable lightdm.service"]
+        },
+        {
+            "name":"SDDM",
+            "comm" : ["sudo dnf install -y sddm","sudo systemctl enable sddm.service"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "comm": ["sudo dnf install -y awesome pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "comm":["sudo dnf copr enable stenstorp/budgie -y","sudo dnf install -y budgie-desktop nautilus gnome-terminal gnome-system-monitor arc-theme arc-icon-theme gedit budgie-extras "]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "comm":["sudo dnf install -y @cinnamon-desktop"]
+        },
+        {
+            "name":"Deepin",
+            "DM":"SDDM",
+            "comm":["sudo dnf group install 'Deepin Desktop' -y"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo dnf install -y @enlightenment"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "comm":["sudo dnf group install -y 'GNOME Desktop Environment'"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "comm":["sudo dnf group install -y 'KDE (K Desktop Environment)'"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "comm":["sudo dnf group install -y 'LXDE Desktop'"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"SDDM",
+            "comm":["sudo dnf group install -y 'LXQt Desktop'"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "comm":["sudo dnf group install -y 'MATE Desktop'"]
+        },
+        {
+            "name":"Pantheon",
+            "DM":"LightDM",
+            "comm":["sudo dnf group install 'pantheon desktop'"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "comm":["sudo dnf group install -y 'Xfce Desktop'"]
+        }
+    ],
+    "tasks" : [
+        {
+            "name" : "Configure extra sources",
+            "comm" : ["sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm","sudo dnf groupupdate core","sudo dnf install fedora-workstation-repositories","sudo dnf install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+        },
+        {
+            "name":"Install recommended packages",
+            "comm":["sudo dnf install -y vlc firefox libreoffice"]
+        }
+    ]
+}

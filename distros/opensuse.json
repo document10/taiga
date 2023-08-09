@@ -7,15 +7,15 @@
     "GD" : [
         {
             "name" : "AMD",
-            "comm" : ["sudo zypper install -y xf86-video-amdgpu"]
+            "comm" : ["sudo zypper install -y xf86-video-amdgpu kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bi"]
         },
         {
             "name" : "Intel",
-            "comm" : ["sudo zypper install -y xf86-video-intel"]
+            "comm" : ["sudo zypper install -y xf86-video-intel kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit"]
         },
         {
             "name" : "Nvidia",
-            "comm" : ["sudo zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.5 nvidia","zypper install -y-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.5"]
+            "comm" : ["sudo zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.5 nvidia","sudo zypper install -y-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.5","sudo zypper install -y libvulkan1 libvulkan1-32bit"]
         },
         {
             "name" : "VMware",
