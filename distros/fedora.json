@@ -89,7 +89,7 @@
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["sudo dnf group install -y 'MATE Desktop'","dnf group install -y 'MATE Applications'"]
+            "comm":["sudo dnf group install -y 'MATE Desktop'","sudo dnf group install -y 'MATE Applications'"]
         },
         {
             "name":"Pantheon",
