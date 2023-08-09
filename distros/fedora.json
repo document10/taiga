@@ -49,7 +49,7 @@
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["sudo dnf copr enable stenstorp/budgie -y","sudo dnf install -y budgie-desktop nautilus gnome-terminal gnome-system-monitor arc-theme arc-icon-theme gedit budgie-extras "]
+            "comm":["sudo dnf group install -y 'Budgie Desktop'","dnf group install -y 'Budgie Desktop Applications'"]
         },
         {
             "name":"Cinnamon",
@@ -89,7 +89,7 @@
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["sudo dnf group install -y 'MATE Desktop'"]
+            "comm":["sudo dnf group install -y 'MATE Desktop'","dnf group install -y 'MATE Applications'"]
         },
         {
             "name":"Pantheon",
