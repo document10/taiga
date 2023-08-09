@@ -69,7 +69,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["sudo dnf group install -y 'GNOME Desktop Environment'"]
+            "comm":["sudo dnf group install -y 'GNOME'"]
         },
         {
             "name":"KDE Plasma",
