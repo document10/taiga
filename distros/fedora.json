@@ -2,7 +2,7 @@
     "name":"Fedora",
     "identify" : "which dnf",
     "order" : 5,
-    "pre" : ["sudo dnf update","sudo dnf upgrade --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber"],
+    "pre" : ["sudo dnf update","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -15,7 +15,7 @@
         },
         {
             "name" : "Nvidia",
-            "comm" : ["sudo dnf install fedora-workstation-repositories","sudo dnf config-manager --set-enabled rpmfusion-nonfree-nvidia-driver","sudo dnf install -y xorg-x11-drv-nouveau"]
+            "comm" : ["sudo dnf install -y fedora-workstation-repositories","sudo dnf config-manager --set-enabled rpmfusion-nonfree-nvidia-driver","sudo dnf install -y xorg-x11-drv-nouveau"]
         },
         {
             "name" : "VMware",
@@ -109,7 +109,7 @@
         },
         {
             "name":"Install recommended packages",
-            "comm":["sudo dnf install -y vlc firefox libreoffice"]
+            "comm":["sudo dnf install -y firefox libreoffice"]
         }
     ]
 }
