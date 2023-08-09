@@ -74,7 +74,7 @@
         {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "comm":["sudo dnf group install -y 'KDE (K Desktop Environment)'"]
+            "comm":["sudo dnf group install -y 'KDE'"]
         },
         {
             "name":"LXDE",
