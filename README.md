@@ -1,13 +1,6 @@
-**Warning: This is the developement branch.Changes here may not be fully tested,so I recommend using the `master` branch for more critical installs.**
+**Warning: This is the developement branch.Changes here may not be fully tested,so I recommend using the [master]([master](https://github.com/document10/taiga)) branch for more critical installs.**
 # TAIGA
 Taiga or Terminal Application for Installing Graphical Appliances is a terminal script for configuring a desktop environment on the system.
-
-## Status:Alpha
-The script is currrently in an alpha state.Use on a production machine is not recommended for the following reasons:
-- More testing needs to be done
-- Desktop Environment support is inconsistent across distros
-- The script has some dependencies needed before running
-- Methods for detecting distros/GPUs (for the express installer) may be inaccurate
 
 ## Installer types
 **1.Express install:** The script will detect the distro and the GPU used,and you can pick the desktop environment,which will be installed with the appropriate display manager.
@@ -29,24 +22,15 @@ Linux: https://www.linuxteck.com/steps-to-configure-sudo-in-linux/
 FreeBSD: https://www.cyberciti.biz/faq/freebsd-install-sudo-command/
 
 Here are commands for installing these dependencies on the supported distros:
-### Arch Linux
-```sh
-sudo pacman -S python sudo pciutils
-```
-Aditionally make sure that the `multilib` repository is enabled,as this is where most graphics drivers are pulled from.To do that uncomment these lines (remove the `#` symbol before each line) in `/etc/pacman.conf`:
+
+| | Arch Linux| Debian/Ubuntu | FreeBSD | OpenSUSE | Fedora |
+|-|------|---------------|---------|----------|--------|
+| Base | `pacman -S python sudo pciutils` | `apt install python sudo pciutils` | `pkg install python sudo pciutils` | `zypper install python sudo pciutils` | `dnf install python sudo pciutils`|
+
+Note:Aditionally for arch make sure that the `multilib` repository is enabled,as this is where most graphics drivers are pulled from.To do that uncomment these lines (remove the `#` symbol before each line) in `/etc/pacman.conf`:
 ```
 [multilib]
 Include = /etc/pacman.d/mirrorlist
-```
-### Debian/Ubuntu
-
-```sh
-sudo apt install python sudo pciutils
-```
-### FreeBSD
-
-```sh
-sudo pkg install python sudo pciutils
 ```
 
 ## Running the script
