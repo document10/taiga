@@ -2,7 +2,7 @@
     "name":"Fedora",
     "identify" : "which dnf",
     "order" : 5,
-    "pre" : ["sudo dnf update","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber"],
+    "pre" : ["sudo dnf update -y","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -105,7 +105,7 @@
     "tasks" : [
         {
             "name" : "Configure extra sources",
-            "comm" : ["sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm","sudo dnf groupupdate core","sudo dnf install fedora-workstation-repositories","sudo dnf install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "comm" : ["sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm","sudo dnf groupupdate core -y","sudo dnf install fedora-workstation-repositories -y","sudo dnf install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
         },
         {
             "name":"Install recommended packages",
