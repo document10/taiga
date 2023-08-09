@@ -20,7 +20,6 @@ dirs = []
 try:
     workdir = Path.cwd()
     dirs = os.listdir(str(workdir)+"/distros")
-    dirs.remove('distros.md')
     for d in dirs:
         file = open(str(workdir)+"/distros/"+d,"r")
         j = json.loads(file.read())
