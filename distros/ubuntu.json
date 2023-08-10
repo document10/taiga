@@ -124,7 +124,7 @@
         {
             "name":"Pantheon",
             "DM":"LightDM",
-            "comm":["sudo add-apt-repository ppa:elementary-os/daily","sudo apt update","sudo apt install -y elementary-icon-theme elementary-default-settings elementary-desktop"]
+            "comm":["sudo add-apt-repository ppa:elementary-os/daily","sudo apt update","sudo apt install -y elementary-icon-theme elementary-desktop"]
         },
         {
             "name":"XFCE (Ubuntu-branded)",
