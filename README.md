@@ -23,11 +23,11 @@ FreeBSD: https://www.cyberciti.biz/faq/freebsd-install-sudo-command/
 
 Here are commands for installing these dependencies on the supported distros:
 
-| | Arch Linux| Debian/Ubuntu | FreeBSD | OpenSUSE | Fedora |
-|-|------|---------------|---------|----------|--------|
-| Base | `pacman -S python sudo pciutils` | `apt install python sudo pciutils` | `pkg install python sudo pciutils` | `zypper install python sudo pciutils` | `dnf install python sudo pciutils`|
+| | Arch Linux| Debian/Ubuntu | FreeBSD | OpenSUSE | Fedora | Void Linux |
+|-|-----------|---------------|---------|----------|--------|------------|
+| Base | `pacman -S python sudo pciutils` | `apt install python sudo pciutils` | `pkg install python sudo pciutils` | `zypper install python sudo pciutils` | `dnf install python sudo pciutils`| `xbps-install python3 sudo pciutils`
 
-Note:Aditionally for arch make sure that the `multilib` repository is enabled,as this is where most graphics drivers are pulled from.To do that uncomment these lines (remove the `#` symbol before each line) in `/etc/pacman.conf`:
+Note:Aditionally for Arch Linux make sure that the `multilib` repository is enabled,as this is where most graphics drivers are pulled from.To do that uncomment these lines (remove the `#` symbol before each line) in `/etc/pacman.conf`:
 ```
 [multilib]
 Include = /etc/pacman.d/mirrorlist
