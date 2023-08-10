@@ -1,0 +1,105 @@
+{
+    "name":"Void Linux",
+    "identify" : "xbps-install -V",
+    "order" : 5,
+    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire wireplumber bluez blueman network-manager-applet"],
+    "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "comm" : ["sudo xbps-install -y linux-firmware-amd mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk xf86-video-amdgpu mesa-vaapi mesa-vdpau"]
+        },
+        {
+            "name" : "Intel",
+            "comm" : ["sudo xbps-install -y linux-firmware-intel mesa-dri intel-video-accel"]
+        },
+        {
+            "name" : "Nvidia",
+            "comm" : ["sudo xbps-install xf86-video-nouveau mesa-dri"]
+        },
+        {
+            "name" : "VMware",
+            "comm" : ["sudo xbps-install -y xf86-video-vmware"]
+        },
+        {
+            "name" : "VESA",
+            "comm" : ["sudo xbps-install -y xf86-video-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "comm":["sudo xbps-install -y gdm","sudo ln -s /etc/sv/gdm /var/service"]
+        },
+        {
+            "name":"LightDM",
+            "comm":["sudo xbps-install -y lightdm lightdm-gtk","sudo ln -s /etc/sv/lightdm /var/service"]
+        },
+        {
+            "name":"SDDM",
+            "comm" : ["sudo xbps-install -y sddm","sudo ln -s /etc/sv/sddm /var/service"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "comm": ["sudo xbps-install -y awesome pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y budgie-desktop budgie-screensaver"]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y cinnamon-all"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y enlightenment ecrire ephoto evisum rage terminology"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "comm":["sudo xbps-install -y gnome gnome-apps"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "comm":["sudo xbps-install -y kde5 kde5-baseapps"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y lxde"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"SDDM",
+            "comm":["sudo xbps-install -y lxqt"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y mate mate-extra"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y xfce4"]
+        }
+    ],
+    "tasks" : [
+        {
+            "name" : "Configure extra sources",
+            "comm" : ["sudo xbps-install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+        },
+        {
+            "name":"Install recommended packages",
+            "comm":["sudo xbps-install -y firefox libreoffice vlc"]
+        }
+    ]
+}
