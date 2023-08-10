@@ -100,6 +100,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo xbps-install -y firefox libreoffice vlc"]
+        },
+        {
+            "name":"Install extra themes",
+            "comm":["sudo xbps-install sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
         }
     ]
 }

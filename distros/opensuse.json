@@ -105,6 +105,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo zypper install -y vlc firefox libreoffice"]
+        },
+        {
+            "name":"Install extra themes",
+            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
         }
     ]
 }
