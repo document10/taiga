@@ -33,7 +33,7 @@
         },
         {
             "name":"LightDM",
-            "comm":["sudo xbps-install -y lightdm lightdm-gtk","sudo ln -s /etc/sv/lightdm /var/service"]
+            "comm":["sudo xbps-install -y lightdm lightdm-gtk-greeter","sudo ln -s /etc/sv/lightdm /var/service"]
         },
         {
             "name":"SDDM",
