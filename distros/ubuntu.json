@@ -122,11 +122,6 @@
             "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
         },
         {
-            "name":"Pantheon",
-            "DM":"LightDM",
-            "comm":["sudo add-apt-repository ppa:elementary-os/daily","sudo apt update","sudo apt install -y elementary-icon-theme elementary-desktop"]
-        },
-        {
             "name":"XFCE (Ubuntu-branded)",
             "DM":"",
             "comm":["sudo apt install -y xubuntu-desktop"]
