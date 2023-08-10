@@ -10,7 +10,8 @@ Aditionally you can run the script in diffrent modes by adding these arguments a
 - *sl* / *ls* [`filepath`]: loads configuration from the file specified in [filepath] and enters Simulation mode
 - *h* : shows this screen and exits
 ## Prerequisites
-The script requires `python`,`sudo` and `pciutils` in order to run.
+The script requires `python`,`sudo` and `pciutils` in order to run.Please check commands for installing these dependencies as well as whether they're already configured on your system or not here:  
+https://github.com/document10/taiga/blob/dev/info/distros.md
 ## Running the script
 Currently there are two ways to run the script:  
 ### Method 1:Using python
