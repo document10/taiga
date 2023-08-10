@@ -49,12 +49,12 @@
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y budgie-desktop budgie-screensaver"]
+            "comm":["sudo xbps-install -y budgie-desktop budgie-screensaver polkit-gnome"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y cinnamon-all"]
+            "comm":["sudo xbps-install -y cinnamon-all polkit-gnome"]
         },
         {
             "name":"Enlightenment",
@@ -64,7 +64,7 @@
         {
             "name":"GNOME",
             "DM":"GDM",
-            "comm":["sudo xbps-install -y gnome gnome-apps"]
+            "comm":["sudo xbps-install -y gnome gnome-apps polkit-gnome"]
         },
         {
             "name":"KDE Plasma",

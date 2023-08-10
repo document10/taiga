@@ -49,12 +49,12 @@
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
+            "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme polkit-gnome"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
+            "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal polkit-gnome"]
         },
         {
             "name":"Cutefish",
