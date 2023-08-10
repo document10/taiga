@@ -92,11 +92,6 @@
             "comm":["sudo dnf group install -y 'MATE Desktop'","sudo dnf group install -y 'MATE Applications'"]
         },
         {
-            "name":"Pantheon",
-            "DM":"LightDM",
-            "comm":["sudo dnf group install 'pantheon desktop'"]
-        },
-        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo dnf group install -y 'Xfce Desktop'"]
