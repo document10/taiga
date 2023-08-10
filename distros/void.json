@@ -79,7 +79,7 @@
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "comm":["sudo xbps-install -y lxqt polkit-gnome"]
+            "comm":["sudo xbps-install -y lxqt polkit-gnome kwin"]
         },
         {
             "name":"MATE",
