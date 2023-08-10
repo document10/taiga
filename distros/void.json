@@ -3,7 +3,7 @@
     "identify" : "xbps-install -V",
     "order" : 5,
     "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire wireplumber bluez blueman network-manager-applet"],
-    "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/dbus /var/service"],
+    "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/dbus /var/service"],
     "GD" : [
         {
             "name" : "AMD",
