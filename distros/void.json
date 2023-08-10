@@ -2,8 +2,8 @@
     "name":"Void Linux",
     "identify" : "xbps-install -V",
     "order" : 5,
-    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet"],
-    "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/avahi /var/service","sudo ln -s /etc/sv/dbus /var/service"],
+    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit"],
+    "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/avahi-daemon /var/service","sudo ln -s /etc/sv/dbus /var/service"],
     "GD" : [
         {
             "name" : "AMD",
@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo xbps-install -y awesome pcmanfm"]
+            "comm": ["sudo xbps-install -y awesome pcmanfm polkit-gnome"]
         },
         {
             "name":"Budgie",
@@ -74,22 +74,22 @@
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y lxde"]
+            "comm":["sudo xbps-install -y lxde polkit-gnome"]
         },
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "comm":["sudo xbps-install -y lxqt"]
+            "comm":["sudo xbps-install -y lxqt polkit-gnome"]
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y mate mate-extra"]
+            "comm":["sudo xbps-install -y mate mate-extra polkit-gnome"]
         },
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y xfce4"]
+            "comm":["sudo xbps-install -y xfce4 polkit-gnome"]
         }
     ],
     "tasks" : [
