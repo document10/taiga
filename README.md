@@ -1,4 +1,3 @@
-**Warning: This is the developement branch.Changes here may not be fully tested,so I recommend using the [master]([master](https://github.com/document10/taiga)) branch for more critical installs.**
 # TAIGA
 Taiga or Terminal Application for Installing Graphical Appliances is a terminal script for configuring a desktop environment on the system.
 ## Installer types
@@ -11,7 +10,7 @@ Aditionally you can run the script in diffrent modes by adding these arguments a
 - *h* : shows this screen and exits
 ## Prerequisites
 The script requires `python`,`sudo` and `pciutils` in order to run.Please check commands for installing these dependencies as well as whether they're already configured on your system or not here:  
-https://github.com/document10/taiga/blob/dev/info/distros.md
+https://github.com/document10/taiga/info/distros.md
 ## Running the script
 Currently there are two ways to run the script:  
 ### Method 1:Using python
