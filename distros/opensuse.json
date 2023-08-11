@@ -1,0 +1,114 @@
+{
+    "name":"OpenSUSE",
+    "identify" : "which zypper",
+    "order" : 4,
+    "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch xterm"],
+    "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+    "GD" : [
+        {
+            "name" : "AMD",
+            "comm" : ["sudo zypper install -y xf86-video-amdgpu kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bi"]
+        },
+        {
+            "name" : "Intel",
+            "comm" : ["sudo zypper install -y xf86-video-intel kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit"]
+        },
+        {
+            "name" : "Nvidia",
+            "comm" : ["sudo zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.5 nvidia","sudo zypper install -y-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.5","sudo zypper install -y libvulkan1 libvulkan1-32bit"]
+        },
+        {
+            "name" : "VMware",
+            "comm" : ["sudo zypper install -y xf86-video-vmware"]
+        },
+        {
+            "name" : "VESA",
+            "comm" : ["sudo zypper install -y xf86-video-vesa"]
+        }
+    ],
+    "DM":[
+        {
+            "name":"GDM",
+            "comm":["sudo zypper install -y gdm","sudo systemctl enable gdm.service"]
+        },
+        {
+            "name":"LightDM",
+            "comm":["sudo zypper install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+        },
+        {
+            "name":"SDDM",
+            "comm" : ["sudo zypper install -y sddm","sudo systemctl enable sddm.service"]
+        }
+    ],
+    "DE":[
+        {
+            "name":"Awesome",
+            "DM":"LightDM",
+            "comm": ["sudo zypper install -y awesome pcmanfm"]
+        },
+        {
+            "name":"Budgie",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y budgie-desktop"]
+        },
+        {
+            "name":"Cinnamon",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
+        },
+        {
+            "name":"Deepin",
+            "DM":"SDDM",
+            "comm":["sudo zypper install -t pattern deepin"]
+        },
+        {
+            "name":"Enlightenment",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y enlightenment ephoto rage terminology"]
+        },
+        {
+            "name":"GNOME",
+            "DM":"GDM",
+            "comm":["sudo zypper install -y -t pattern gnome"]
+        },
+        {
+            "name":"KDE Plasma",
+            "DM":"SDDM",
+            "comm":["sudo zypper install -y -t pattern kde kde_plasma"]
+        },
+        {
+            "name":"LXDE",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y -t pattern lxde"]
+        },
+        {
+            "name":"LXQT",
+            "DM":"SDDM",
+            "comm":["sudo zypper install -y -t pattern lxqt"]
+        },
+        {
+            "name":"MATE",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y patterns-mate-mate"]
+        },
+        {
+            "name":"XFCE",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y -t pattern xfce"]
+        }
+    ],
+    "tasks" : [
+        {
+            "name" : "Configure extra sources",
+            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+        },
+        {
+            "name":"Install recommended packages",
+            "comm":["sudo zypper install -y vlc firefox libreoffice"]
+        },
+        {
+            "name":"Install extra themes",
+            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+        }
+    ]
+}

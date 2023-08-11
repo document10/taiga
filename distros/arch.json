@@ -2,7 +2,7 @@
     "name":"Arch Linux",
     "identify" : "which pacman",
     "order" : 0,
-    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro"],
+    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -44,17 +44,17 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo pacman -S --noconfirm awesome pcmanfm"]
+            "comm": ["sudo pacman -S --noconfirm awesome pcmanfm polkit-gnome"]
         },
         {
             "name":"Budgie",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme"]
+            "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme polkit-gnome"]
         },
         {
             "name":"Cinnamon",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal"]
+            "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal polkit-gnome"]
         },
         {
             "name":"Cutefish",
@@ -84,17 +84,17 @@
         {
             "name":"LXDE",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm lxde"]
+            "comm":["sudo pacman -S --noconfirm lxde polkit-gnome"]
         },
         {
             "name":"LXQT",
             "DM":"SDDM",
-            "comm":["sudo pacman -S --noconfirm lxqt breeze-icons oxygen-icons kwin"]
+            "comm":["sudo pacman -S --noconfirm lxqt breeze-icons oxygen-icons kwin polkit-gnome"]
         },
         {
             "name":"MATE",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm mate mate-extra"]
+            "comm":["sudo pacman -S --noconfirm mate mate-extra polkit-gnome"]
         },
         {
             "name":"Pantheon",
@@ -104,7 +104,7 @@
         {
             "name":"XFCE",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies"]
+            "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies polkit-gnome"]
         }
     ],
     "tasks" : [
@@ -115,6 +115,10 @@
         {
             "name":"Install recommended packages",
             "comm":["sudo pacman -S --noconfirm vlc firefox libreoffice-still"]
+        },
+        {
+            "name":"Install extra themes",
+            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
         }
     ]
 }
