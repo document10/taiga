@@ -1,0 +1,1 @@
+pyinstaller taiga_rw.py -F
