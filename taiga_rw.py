@@ -55,7 +55,7 @@ def script(build,distro):
     if len(build["tasks"])>0:
         file.write("echo Configuring extra tasks\n")
         for t in build["tasks"]:
-            file.write(distro["tasks"][t]["name"]+"\n")
+            file.write("echo" + distro["tasks"][t]["name"]+"\n")
             for c in distro["tasks"][t]["comm"]:
                 file.write(c+"\n")
     if build["final"]==1:
@@ -71,21 +71,21 @@ def main_menu(build,distros):
     options = ["Distro:","Base packages","Graphics:","Display manager:","Desktop environment:"]
     if build["distro"]==-1:
         for o in options:
-            o+="None"
+            o+=" None"
     else:
         options[0]+=distros[build["distro"]]["name"]
         if build["GD"]==-1:
-            options[2]+="None"
+            options[2]+=" None"
         else:
             options[2]+=distros[build["distro"]]["GD"][build["GD"]]["name"]
         
         if build["DM"]==-1:
-            options[3]+="None"
+            options[3]+=" None"
         else:
             options[3]+=distros[build["distro"]]["DM"][build["DM"]]["name"]
         
         if build["DE"]==-1:
-            options[4]+="None"
+            options[4]+=" None"
         else:
             options[4]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
         i=0
@@ -158,7 +158,7 @@ def main_menu(build,distros):
                     main_menu(build,distros)
                 if action == len(options)-4:
                     clear()
-                    msg ="Final options:\n"+ distros[build["distro"]]["name"]+"Base packages:"
+                    msg ="Final options:\n"+ distros[build["distro"]]["name"]+"\nBase packages:"
                     if build["base"]==1:
                         msg +=" yes\n"
                     else:
