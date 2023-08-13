@@ -162,6 +162,7 @@ def main_menu(build,distros):
                     build["tasks"].remove(action - 5)
                 else:
                     build["tasks"].append(action - 5)
+                build["tasks"].sort()
                 main_menu(build,distros)
             else:
                 if action == len(options)-5:
@@ -170,7 +171,7 @@ def main_menu(build,distros):
                     else:
                         build["reboot"]=1
                     main_menu(build,distros)
-                elif action == len(options)-5:
+                elif action == len(options)-6:
                     if build["final"]==1:
                         build["final"]=0
                     else:
