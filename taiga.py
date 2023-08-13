@@ -25,7 +25,7 @@ def conf_menu(items,text,skip):
         options = []
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text)
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black","bold"),title=text)
         return menu.show()
     else:
         options = ["Skip"]
@@ -34,14 +34,20 @@ def conf_menu(items,text,skip):
         menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text)
         return menu.show()-1
 
+def select_menu(items,text,selected):
+    clear()
+    print(text)
+    terminal_menu = TerminalMenu(items,menu_cursor=(None),menu_highlight_style=("bg_yellow","fg_black","bold"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title="Press tab/space to select,enter to exit",preselected_entries=selected)
+    return terminal_menu.show()
+
 def script(build,distro):
     file = open("taiga_"+str(math.ceil(time.time())),"x")
-    if build["base"] == 1:
+    if 0 in build["options"]:
         file.write("echo Configuring base system\n")
         for b in distro["pre"]:
             file.write(b+"\n")
     if build["GD"]!=-1:
-        file.write("echo Installing graphics drivers:\n")
+        file.write("echo Installing graphics drivers\n")
         for g in distro["GD"][build["GD"]]["comm"]:
             file.write(g+"\n")
     if build["DM"]!=-1:
@@ -58,11 +64,11 @@ def script(build,distro):
             file.write("echo " + distro["tasks"][t]["name"]+"\n")
             for c in distro["tasks"][t]["comm"]:
                 file.write(c+"\n")
-    if build["final"]==1:
+    if 1 in build["options"]:
         file.write("echo Final configuration\n")
         for f in distro["post"]:
             file.write(f+"\n")
-    if build["reboot"]==1:
+    if 2 in build["options"]:
         file.write("echo Installation complete!Rebooting...\n")
         cmd = os.system("which systemctl")
         if cmd == 0:
@@ -77,49 +83,29 @@ def script(build,distro):
 
 
 def main_menu(build,distros):
-    options = ["Distro:","Base packages","Graphics:","Display manager:","Desktop environment:"]
+    options = ["Distro:","Graphics:","Display manager:","Desktop environment:"]
     if build["distro"]==-1:
         for o in options:
             o+=" None"
     else:
         options[0]+=distros[build["distro"]]["name"]
         if build["GD"]==-1:
-            options[2]+=" None"
+            options[1]+=" None"
         else:
-            options[2]+=distros[build["distro"]]["GD"][build["GD"]]["name"]
+            options[1]+=distros[build["distro"]]["GD"][build["GD"]]["name"]
         
         if build["DM"]==-1:
-            options[3]+=" None"
+            options[2]+=" None"
         else:
-            options[3]+=distros[build["distro"]]["DM"][build["DM"]]["name"]
+            options[2]+=distros[build["distro"]]["DM"][build["DM"]]["name"]
         
         if build["DE"]==-1:
-            options[4]+=" None"
+            options[3]+=" None"
         else:
-            options[4]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
+            options[3]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
         i=0
-        for t in distros[build["distro"]]["tasks"]:
-            task = t["name"]
-            if i in build["tasks"]:
-                task += ": yes"
-            else:
-                task+=": no"
-            options.append(task)
-            i+=1
-    if build["base"]==1:
-        options[1]+=": yes"
-    else:
-        options[1]+=": no"
-    options.append("Final configuration")
-    if build["final"]==1:
-        options[5+len(distros[build["distro"]]["tasks"])]+=": yes"
-    else:
-        options[5+len(distros[build["distro"]]["tasks"])]+=": no"
-    options.append("Reboot after install")
-    if build["reboot"]==1:
-        options[6+len(distros[build["distro"]]["tasks"])]+=": yes"
-    else:
-        options[6+len(distros[build["distro"]]["tasks"])]+= ": no"
+    options.append("Extra tasks:"+str(len(build["tasks"])))
+    options.append("Additional settings")
     options.append("Install")
     options.append("Save config to file")
     options.append("Build script")
@@ -135,18 +121,12 @@ def main_menu(build,distros):
             build["base"] = 1
             main_menu(build,distros)
         case 1:
-            if build["base"]==1:
-                build["base"]=0
-            else:
-                build["base"]=1
-            main_menu(build,distros)
-        case 2:
             build["GD"] = conf_menu(distros[build["distro"]]["GD"],"Select your graphics driver:",1)
             main_menu(build,distros)
-        case 3:
+        case 2:
             build["DM"] = conf_menu(distros[build["distro"]]["DM"],"Select your display manager:",1)
             main_menu(build,distros)
-        case 4:
+        case 3:
             build["DE"] = conf_menu(distros[build["distro"]]["DE"],"Select your desktop environment:",1)
             i = 0
             if build["DE"]!=-1:
@@ -155,83 +135,82 @@ def main_menu(build,distros):
                         build["DM"] = i
                     i+=1
             main_menu(build,distros)
-            
-        case _:
-            if action < 5 + len(distros[build["distro"]]["tasks"]):
-                if action -5 in build["tasks"]:
-                    build["tasks"].remove(action - 5)
-                else:
-                    build["tasks"].append(action - 5)
-                build["tasks"].sort()
+        case 4:
+            build["tasks"].sort()
+            tasks = []
+            i=0
+            for t in distros[build["distro"]]["tasks"]:
+                tasks.append(t["name"])
+                i+=1
+            choice = select_menu(tasks,"Extra tasks",build["tasks"])
+            build["tasks"] = []
+            if choice!=None:
+                build["tasks"] = list(choice)
+            main_menu(build,distros)            
+        case 5:
+            build["options"].sort()
+            choice = select_menu(["Base packages","Final configuration","Reboot after install"],"Select additional options",build["options"])
+            build["options"]= []
+            if choice != None:
+                build["options"] = list(choice)
+            main_menu(build,distros)
+        case 6:
+            clear()
+            msg ="Final options:\nOS:"+ distros[build["distro"]]["name"]+"\n"
+            if build["GD"]!=-1:
+                msg += "Graphics:"+distros[build["distro"]]["GD"][build["GD"]]["name"]+"\n"
+            if build["DM"]!=-1:
+                msg += "Display manager:"+distros[build["distro"]]["DM"][build["DM"]]["name"]+"\n"
+            if build["DE"]!=-1:
+                msg += "Desktop environment:"+distros[build["distro"]]["DE"][build["DE"]]["name"]+"\n"
+            if len(build["tasks"])>0:
+                msg +="\nExtra tasks:\n"
+                for t in build["tasks"]:
+                    msg += distros[build["distro"]]["tasks"][t]["name"]+"\n"
+            msg += "\nAdditional settings:\n"
+            msg += "\nBase packages:"
+            if 0 in build["options"]:
+                msg += " yes\n"
+            else:
+                msg += " no\n"
+            msg += "\nFinal configuration:"
+            if 1 in build["options"]:
+                msg += " yes\n"
+            else:
+                msg += " no\n"
+            msg += "\nReboot after install"
+            if 1 in build["options"]:
+                msg += " yes\n"
+            else:
+                msg += " no\n"
+            msg +="\nConfirm?"
+            ok = opt_menu(["Yes","No"],msg)
+            if ok == 0:
+                file = script(build,distros[build["distro"]])
+                clear()
+                os.system("sh "+file)
+                sys.exit()
+            else:
+                main_menu(build,distros)
+        case 7:                
+            file = open("config_"+str(math.ceil(time.time()))+".json","x")
+            file.write(json.dumps(build))
+            file.close()
+            opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
+            main_menu(build,distros)
+        case 8:    
+            file = script(build,distros[build["distro"]])
+            clear()
+            ok = opt_menu(["Return","Exit"],"All commands have been saved to "+ file)
+            if ok == 0:
                 main_menu(build,distros)
             else:
-                if action == len(options)-6:
-                    if build["final"]==1:
-                        build["final"]=0
-                    else:
-                        build["final"]=1
-                    main_menu(build,distros)
-                elif action == len(options)-5:
-                    if build["reboot"]==1:
-                        build["reboot"]=0
-                    else:
-                        build["reboot"]=1
-                    main_menu(build,distros)
-                elif action == len(options)-4:
-                    clear()
-                    msg ="Final options:\nOS:"+ distros[build["distro"]]["name"]+"\nBase packages:"
-                    if build["base"]==1:
-                        msg +=" yes\n"
-                    else:
-                        msg += " no\n"
-                    if build["GD"]!=-1:
-                        msg += "Graphics:"+distros[build["distro"]]["GD"][build["GD"]]["name"]+"\n"
-                    if build["DM"]!=-1:
-                        msg += "Display manager:"+distros[build["distro"]]["DM"][build["DM"]]["name"]+"\n"
-                    if build["DE"]!=-1:
-                        msg += "Desktop environment:"+distros[build["distro"]]["DE"][build["DE"]]["name"]+"\n"
-                    if len(build["tasks"])>0:
-                        msg +="\nExtra tasks:\n"
-                        for t in build["tasks"]:
-                            msg += distros[build["distro"]]["tasks"][t]["name"]+"\n"
-                    msg += "\nFinal configuration:"
-                    if build["final"]==1:
-                        msg += " yes\n"
-                    else:
-                        msg += " no\n"
-                    msg += "\nReboot after install:"
-                    if build["reboot"]==1:
-                        msg += " yes\n"
-                    else:
-                        msg += " no\n"
-                    msg +="\nConfirm?"
-                    ok = opt_menu(["Yes","No"],msg)
-                    if ok == 0:
-                        file = script(build,distros[build["distro"]])
-                        clear()
-                        os.system("sh "+file)
-                        sys.exit()
-                    else:
-                        main_menu(build,distros)        
-                elif action == len(options)-3:
-                    file = open("config_"+str(math.ceil(time.time()))+".json","x")
-                    file.write(json.dumps(build))
-                    file.close()
-                    opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
-                    main_menu(build,distros)
-                elif action == len(options)-2:
-                    file = script(build,distros[build["distro"]])
-                    clear()
-                    ok = opt_menu(["Return","Exit"],"All commands have been saved to "+ file)
-                    if ok == 0:
-                        main_menu(build,distros)
-                    else:
-                        print("Installation aborted.")
-                        sys.exit()
-                elif action == len(options)-1:
-                    clear()
-                    print("Installation aborted.")
-                    sys.exit()
+                print("Installation aborted.")
+                sys.exit()
+        case 9:
+            clear()
+            print("Installation aborted.")
+            sys.exit()
 
 def load():
     if len(sys.argv) < 2:
@@ -302,13 +281,11 @@ def main():
         build = {
             "version":version,
             "distro" : -1,
-            "base" : 1,
             "GD" : -1,
             "DM" : -1,
             "DE" : -1,
             "tasks" : [],
-            "final":1,
-            "reboot":0
+            "options":[0,1]
         }
         build["distro"] = get_distro(distros)
         if build["distro"] != -1:
