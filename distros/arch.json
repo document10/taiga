@@ -110,7 +110,7 @@
     "tasks" : [
         {
             "name":"Configure extra sources",
-            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si","git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si","cd ..","git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo systemctl enable --now snapd.socket","sudo snap install core"]
         },
         {
             "name":"Install recommended packages",
@@ -118,7 +118,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

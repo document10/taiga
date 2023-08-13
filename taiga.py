@@ -165,17 +165,17 @@ def main_menu(build,distros):
                 build["tasks"].sort()
                 main_menu(build,distros)
             else:
-                if action == len(options)-5:
-                    if build["reboot"]==1:
-                        build["reboot"]=0
-                    else:
-                        build["reboot"]=1
-                    main_menu(build,distros)
-                elif action == len(options)-6:
+                if action == len(options)-6:
                     if build["final"]==1:
                         build["final"]=0
                     else:
                         build["final"]=1
+                    main_menu(build,distros)
+                elif action == len(options)-5:
+                    if build["reboot"]==1:
+                        build["reboot"]=0
+                    else:
+                        build["reboot"]=1
                     main_menu(build,distros)
                 elif action == len(options)-4:
                     clear()
@@ -199,10 +199,16 @@ def main_menu(build,distros):
                         msg += " yes\n"
                     else:
                         msg += " no\n"
+                    msg += "\nReboot after install:"
+                    if build["reboot"]==1:
+                        msg += " yes\n"
+                    else:
+                        msg += " no\n"
                     msg +="\nConfirm?"
                     ok = opt_menu(["Yes","No"],msg)
                     if ok == 0:
                         file = script(build,distros[build["distro"]])
+                        clear()
                         os.system("sh "+file)
                         sys.exit()
                     else:
