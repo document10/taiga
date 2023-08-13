@@ -2,7 +2,7 @@
     "name":"Fedora",
     "identify" : "which dnf",
     "order" : 5,
-    "pre" : ["sudo dnf update -y","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber bluez bluez-tools blueman"],
+    "pre" : ["sudo dnf update -y","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber bluez bluez-tools blueman sassc"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {

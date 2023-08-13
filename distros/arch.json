@@ -2,7 +2,7 @@
     "name":"Arch Linux",
     "identify" : "which pacman",
     "order" : 0,
-    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
+    "pre" : ["sudo pacman -Syu --noconfirm","sudo pacman -S xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit sassc"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {

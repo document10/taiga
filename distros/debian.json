@@ -2,7 +2,7 @@
     "name":"Debian",
     "identify" : "apt -v",
     "order" : 2,
-    "pre" : ["sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro"],
+    "pre" : ["sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro sassc"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {

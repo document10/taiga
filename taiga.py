@@ -25,7 +25,7 @@ def conf_menu(items,text,skip):
         options = []
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black","bold"),title=text)
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text)
         return menu.show()
     else:
         options = ["Skip"]
@@ -83,7 +83,7 @@ def script(build,distro):
 
 
 def main_menu(build,distros):
-    options = ["Distro:","Graphics:","Display manager:","Desktop environment:"]
+    options = ["Distro:","Graphics:","Display manager:","Desktop environment:","Extra tasks:"+str(len(build["tasks"])),"Additional options","Install","Save config to file","Build script","Exit"]
     if build["distro"]==-1:
         for o in options:
             o+=" None"
@@ -104,13 +104,7 @@ def main_menu(build,distros):
         else:
             options[3]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
         i=0
-    options.append("Extra tasks:"+str(len(build["tasks"])))
-    options.append("Additional settings")
-    options.append("Install")
-    options.append("Save config to file")
-    options.append("Build script")
-    options.append("Exit")
-    action = opt_menu(options,"TAIGA 0.4")
+    action = opt_menu(options,"TAIGA "+str(version))
     match action:
         case 0:
             build["distro"] = conf_menu(distros,"Select your distro from the list of supported distros:",0)
@@ -168,21 +162,13 @@ def main_menu(build,distros):
                 for t in build["tasks"]:
                     msg += distros[build["distro"]]["tasks"][t]["name"]+"\n"
             msg += "\nAdditional settings:\n"
-            msg += "\nBase packages:"
-            if 0 in build["options"]:
-                msg += " yes\n"
-            else:
-                msg += " no\n"
-            msg += "\nFinal configuration:"
-            if 1 in build["options"]:
-                msg += " yes\n"
-            else:
-                msg += " no\n"
-            msg += "\nReboot after install"
-            if 1 in build["options"]:
-                msg += " yes\n"
-            else:
-                msg += " no\n"
+            if 0 not in build["options"]:
+                msg += "Skip base packages\n"
+            if 1 not in build["options"]:
+                msg += "Skip final configuration\n"
+            if 2 in build["options"]:
+                msg += "Reboot after install\n"    
+            
             msg +="\nConfirm?"
             ok = opt_menu(["Yes","No"],msg)
             if ok == 0:
@@ -228,7 +214,7 @@ def load():
                 clear()
                 print("Installation aborted")
                 sys.exit()
-        if "version" in build:
+        if "version" in build and "distro" in build and "GD" in build and "DM" in build and "DE" in build and "tasks" in build and "options" in build:
             return build
         else:
             ok = opt_menu(["Discard config","Exit"],"This config is incompatible with this version of TAIGA.")
