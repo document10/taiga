@@ -8,3 +8,4 @@ mv dist/taiga taiga
 rm -rf build
 rm -rf dist
 rm -rf taiga.spec
+ls -a
