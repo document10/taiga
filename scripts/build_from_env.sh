@@ -1,7 +1,8 @@
+cd ..
 echo "Removing previous binary"
 rm -rf taiga
 echo "Compiling executable"
-pyinstaller taiga.py -F
+bin/pyinstaller taiga.py -F
 echo "Cleaning up"
 mv dist/taiga taiga
 rm -rf build
