@@ -2,7 +2,7 @@
     "name":"OpenSUSE",
     "identify" : "which zypper",
     "order" : 4,
-    "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch xterm sassc"],
+    "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch xterm"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -99,8 +99,16 @@
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
-            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "name" : "Configure extra repositories",
+            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy"]
+        },
+        {
+            "name":"Install snapd",
+            "comm":["sudo zypper install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+        },
+        {
+            "name":"Install flatpak",
+            "comm":["sudo zypper install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -108,7 +116,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            "comm":["sudo zypper install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

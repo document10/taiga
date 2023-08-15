@@ -10,38 +10,50 @@ import subprocess
 import sys
 import math
 
+#will be important for future versions
 version = 0.4
+
+#clears screen
 def clear():
     os.system("clear")
 
-def opt_menu(options,text):
-    clear()
-    menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text)
-    return menu.show()
+#functions for creating menus
 
-def conf_menu(items,text,skip):
+#generic menu
+def opt_menu(options,text,index=0,hint=0):
+    clear()
+    if hint == 1:
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        return menu.show()
+    else:
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
+        return menu.show()
+
+#configs menu
+def conf_menu(items,text,skip,index=0):
     clear()
     if skip == 0:
         options = []
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text)
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
         return menu.show()
     else:
         options = ["Skip"]
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text)
-        return menu.show()-1
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        return (menu.show() or -1)-1
 
+#selection menu
 def select_menu(items,text,selected):
     clear()
-    print(text)
-    terminal_menu = TerminalMenu(items,menu_cursor=(None),menu_highlight_style=("bg_yellow","fg_black","bold"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title="Press tab/space to select,enter to exit",preselected_entries=selected)
+    terminal_menu = TerminalMenu(items,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_yellow","fg_black"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title=text,multi_select_cursor_style=("fg_red","bold"),preselected_entries=selected,status_bar="\nArrow keys:Navigate options\nTab/Space:Toggle options\nEnter:Confirm selection",status_bar_style=("fg_blue","italics"))
     return terminal_menu.show()
 
-def script(build,distro):
-    file = open("taiga_"+str(math.ceil(time.time())),"x")
+#builds the script for execution
+def script(build,distro,name = "taiga_"+str(math.ceil(time.time()))):
+    file = open(name,"x")
     if 0 in build["options"]:
         file.write("echo Configuring base system\n")
         for b in distro["pre"]:
@@ -81,75 +93,82 @@ def script(build,distro):
     return file.name
             
 
-
-def main_menu(build,distros):
-    options = ["Distro:","Graphics:","Display manager:","Desktop environment:","Extra tasks:"+str(len(build["tasks"])),"Additional options","Install","Save config to file","Build script","Exit"]
-    if build["distro"]==-1:
-        for o in options:
-            o+=" None"
+#main menu
+def main_menu(build,distros,index):
+    #create base options
+    options = ["Distro:","Graphics:","Display manager:","Desktop environment:","","Extra tasks:"+str(len(build["tasks"])),"Additional options","","Install","Save config to file","Build script","Exit"]
+    options[0]+=distros[build["distro"]]["name"]
+    if build["GD"]==-1:
+        options[1]+=" None"
     else:
-        options[0]+=distros[build["distro"]]["name"]
-        if build["GD"]==-1:
-            options[1]+=" None"
-        else:
-            options[1]+=distros[build["distro"]]["GD"][build["GD"]]["name"]
-        
-        if build["DM"]==-1:
-            options[2]+=" None"
-        else:
-            options[2]+=distros[build["distro"]]["DM"][build["DM"]]["name"]
-        
-        if build["DE"]==-1:
-            options[3]+=" None"
-        else:
-            options[3]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
-        i=0
-    action = opt_menu(options,"TAIGA "+str(version))
+        options[1]+=distros[build["distro"]]["GD"][build["GD"]]["name"]
+    
+    if build["DM"]==-1:
+        options[2]+=" None"
+    else:
+        options[2]+=distros[build["distro"]]["DM"][build["DM"]]["name"]
+    
+    if build["DE"]==-1:
+        options[3]+=" None"
+    else:
+        options[3]+=distros[build["distro"]]["DE"][build["DE"]]["name"]
+    #wait for choice from user
+    action = opt_menu(options,"TAIGA "+str(version),index,1)
     match action:
         case 0:
-            build["distro"] = conf_menu(distros,"Select your distro from the list of supported distros:",0)
-            build["GD"] = -1
-            build["DM"] = -1
-            build["DE"] = -1
-            build["tasks"] = []
-            build["base"] = 1
-            main_menu(build,distros)
+            #change user distro
+            choice = conf_menu(distros,"Select your distro from the list of supported distros:",0,build["distro"])
+            if choice != None:
+                build["distro"] = choice
+                build["GD"] = -1
+                build["DM"] = -1
+                build["DE"] = -1
+                build["tasks"] = []
+            main_menu(build,distros,action)
         case 1:
-            build["GD"] = conf_menu(distros[build["distro"]]["GD"],"Select your graphics driver:",1)
-            main_menu(build,distros)
+            #change graphics driver
+            choice = conf_menu(distros[build["distro"]]["GD"],"Select your graphics driver:",1,build["GD"]+1)
+            if choice != -2:
+                build["GD"]=choice
+            main_menu(build,distros,action)
         case 2:
-            build["DM"] = conf_menu(distros[build["distro"]]["DM"],"Select your display manager:",1)
-            main_menu(build,distros)
+            #change display manager
+            choice = conf_menu(distros[build["distro"]]["DM"],"Select your display manager:",1,build["DM"]+1)
+            if choice!= -2:
+                build["DM"] = choice
+            main_menu(build,distros,action)
         case 3:
-            build["DE"] = conf_menu(distros[build["distro"]]["DE"],"Select your desktop environment:",1)
-            i = 0
-            if build["DE"]!=-1:
-                for dm in distros[build["distro"]]["DM"]:
-                    if dm["name"] == distros[build["distro"]]["DE"][build["DE"]]["DM"]:
-                        build["DM"] = i
-                    i+=1
-            main_menu(build,distros)
-        case 4:
+            #change desktop emvironment
+            choice = conf_menu(distros[build["distro"]]["DE"],"Select your desktop environment:",1,build["DE"]+1)
+            if choice != -2:
+                build["DE"] = choice
+                #autoassign display manager
+                i = 0
+                if build["DE"]!=-1:
+                    for dm in distros[build["distro"]]["DM"]:
+                        if dm["name"] == distros[build["distro"]]["DE"][build["DE"]]["DM"]:
+                            build["DM"] = i
+                        i+=1
+            main_menu(build,distros,action)
+        case 5:
+            #toggle tasks
             build["tasks"].sort()
             tasks = []
-            i=0
             for t in distros[build["distro"]]["tasks"]:
                 tasks.append(t["name"])
-                i+=1
             choice = select_menu(tasks,"Extra tasks",build["tasks"])
-            build["tasks"] = []
-            if choice!=None:
-                build["tasks"] = list(choice)
-            main_menu(build,distros)            
-        case 5:
+            build["tasks"] = list(choice or [])
+            main_menu(build,distros,action)            
+        case 6:
+            #additional options
             build["options"].sort()
             choice = select_menu(["Base packages","Final configuration","Reboot after install"],"Select additional options",build["options"])
-            build["options"]= []
-            if choice != None:
-                build["options"] = list(choice)
-            main_menu(build,distros)
-        case 6:
+            build["options"] = list(choice or [])
+            main_menu(build,distros,action)
+        case 8:
+            #install
             clear()
+            #shows installation options
             msg ="Final options:\nOS:"+ distros[build["distro"]]["name"]+"\n"
             if build["GD"]!=-1:
                 msg += "Graphics:"+distros[build["distro"]]["GD"][build["GD"]]["name"]+"\n"
@@ -170,34 +189,41 @@ def main_menu(build,distros):
                 msg += "Reboot after install\n"    
             
             msg +="\nConfirm?"
+            #ask for confirmation
             ok = opt_menu(["Yes","No"],msg)
             if ok == 0:
+                #begin install
                 file = script(build,distros[build["distro"]])
                 clear()
                 os.system("sh "+file)
                 sys.exit()
             else:
-                main_menu(build,distros)
-        case 7:                
-            file = open("config_"+str(math.ceil(time.time()))+".json","x")
+                #return to main menu
+                main_menu(build,distros,action)
+        case 9:
+            #save config
+            clear()
+            name = input("Type file name here:\n") or "config_"+str(math.ceil(time.time()))+".json"
+            file = open(name,"x")
             file.write(json.dumps(build))
             file.close()
             opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
-            main_menu(build,distros)
-        case 8:    
-            file = script(build,distros[build["distro"]])
+            main_menu(build,distros,action)
+        case 10:
+            #save script
             clear()
-            ok = opt_menu(["Return","Exit"],"All commands have been saved to "+ file)
-            if ok == 0:
-                main_menu(build,distros)
-            else:
-                print("Installation aborted.")
-                sys.exit()
-        case 9:
+            name = input("Type file name here:\n") or "taiga_"+str(math.ceil(time.time()))
+            file = script(build,distros[build["distro"]],name)
+            clear()
+            ok = opt_menu(["Return"],"All commands have been saved to "+ file)
+            main_menu(build,distros,action)
+        case 11:
+            #exit
             clear()
             print("Installation aborted.")
             sys.exit()
 
+#load configs from args
 def load():
     if len(sys.argv) < 2:
         return 0
@@ -207,6 +233,7 @@ def load():
             build = json.loads(file.read())
             file.close()
         except:
+            #config is invalid
             ok = opt_menu(["Discard config","Exit"],"Couldn't load the config.The config is either corrupted or doesn't exist.")
             if ok == 0:
                 return 0
@@ -214,6 +241,7 @@ def load():
                 clear()
                 print("Installation aborted")
                 sys.exit()
+        #checks if the config has all the necesary options
         if "version" in build and "distro" in build and "GD" in build and "DM" in build and "DE" in build and "tasks" in build and "options" in build:
             return build
         else:
@@ -225,6 +253,7 @@ def load():
                 print("Installation aborted")
                 sys.exit()
 
+#gets all data regarding distros
 def serialize():
     distros = []
     workdir = Path.cwd()
@@ -237,6 +266,7 @@ def serialize():
     distros = sorted(distros, key=itemgetter('order'))
     return distros
 
+#(attempt to) get the distro
 def get_distro(distros):
     clear()
     for d in distros:
@@ -245,25 +275,34 @@ def get_distro(distros):
             return d["order"]
     return -1
 
+#(attempt to) identify GPU
 def get_gpu(distro):
-    output =  str(subprocess.check_output(["sh", "get_gpu.sh"])).lower()
+    os.system("lspci -v | grep VGA >> cache.file")
+    file = open("cache.file","r")
+    output =  file.read()
+    file.close()
+    os.system("rm -rf cache.file")
     i = 0
     for v in distro["GD"]:
-        if search(v["name"].lower(),output):
+        if search(v["name"].lower(),output.lower()):
             return i
         i+=1
     return -1
 
+#main function
 def main():
     distros = []
     try:
         distros = serialize()
     except:
+        #something went wrong with collecting distro info
         print("Couldn't load info about the distros.Redownload the script and try again.")
         sys.exit(1)
+    #info about current config
     build = load()
     distro = {}
     if build == 0:
+        #no config was loaded,loads the default config
         build = {
             "version":version,
             "distro" : -1,
@@ -273,22 +312,22 @@ def main():
             "tasks" : [],
             "options":[0,1]
         }
+        #gets info about the system
         build["distro"] = get_distro(distros)
         if build["distro"] != -1:
             distro = distros[build["distro"]]
             build["GD"]=get_gpu(distro)
         else:
-            build["distro"]= conf_menu(distros,"Your distro couldn't be recognized.Please select your distro manually",1)
-            if build["distro"]==-1:
-                print("Installation aborted")
-                sys.exit()
-            else:
-                distro = distros[build["distro"]]
-                build["GD"]=get_gpu(distro)
+            #couldn't identify the distro
+            build["distro"]= conf_menu(distros,"Your distro couldn't be recognized.Please select your distro manually",0)
+            if build["distro"]==None:
+                print("Installation aborted.")
+                sys.exit(1)
+            distro = distros[build["distro"]]
+            build["GD"]=get_gpu(distro)
         clear()
-    else:
-        print(str(build)) 
-    main_menu(build,distros)
+    main_menu(build,distros,0)
 
+#just some boilerplate
 if __name__ == "__main__":
     main()

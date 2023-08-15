@@ -2,7 +2,7 @@
     "name":"Ubuntu",
     "identify" : "add-apt-repository -h",
     "order" : 1,
-    "pre" : ["sudo apt update","sudo apt upgrade","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro software-properties-common sassc"],
+    "pre" : ["sudo apt update","sudo apt upgrade","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro software-properties-common"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -134,8 +134,16 @@
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
-            "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade","sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "name" : "Configure extra repositories",
+            "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade"]
+        },
+        {
+            "name":"Install snapd",
+            "comm":["sudo apt install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+        },
+        {
+            "name":"Install flatpak",
+            "comm":["sudo apt install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -143,7 +151,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            "comm":["sudo apt install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

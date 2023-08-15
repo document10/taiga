@@ -2,7 +2,7 @@
     "name":"Void Linux",
     "identify" : "xbps-install -V",
     "order" : 5,
-    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit sassc"],
+    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit"],
     "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/avahi-daemon /var/service","sudo ln -s /etc/sv/dbus /var/service"],
     "GD" : [
         {
@@ -94,7 +94,7 @@
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
+            "name" : "Install flatpak",
             "comm" : ["sudo xbps-install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
@@ -103,7 +103,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            "comm":["sudo xbps-install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }
