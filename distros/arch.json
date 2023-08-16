@@ -77,16 +77,6 @@
             "comm":["sudo pacman -S --noconfirm gnome"]
         },
         {
-            "name":"Hyprland",
-            "DM":"SDDM",
-            "comm":["sudo pacman -S --noconfirm hyprland xorg-xwayland waybar dunst libnotify pcmanfm polkit-gnome"]
-        },
-        {
-            "name":"i3",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm i3 dmenu pcmanfm polkit-gnome"]
-        },
-        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "comm":["sudo pacman -S --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm dunst libnotify"]
@@ -107,34 +97,14 @@
             "comm":["sudo pacman -S --noconfirm mate mate-extra polkit-gnome"]
         },
         {
-            "name":"Openbox",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm openbox obconf menumaker alacritty pcmanfm polkit-gnome dunst libnotify"]
-        },
-        {
             "name":"Pantheon",
             "DM":"LightDM",
             "comm":["sudo pacman -S --noconfirm pantheon"]
         },
         {
-            "name":"Sway",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm sway swaybg swaylock swayidle xorg-xwayland waybar swayimg pcmanfm polkit-gnome dunst libnotify"]
-        },
-        {
-            "name":"Weston",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm weston xorg-xwayland pcmanfm polkit-gnome dunst libnotify"]
-        },
-        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies polkit-gnome"]
-        },
-        {
-            "name":"Xmonad",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm xmonad xmonad-contrib pcmanfm polkit-gnome dunst libnotify dmenu"]
         }
     ],
     "tasks" : [
