@@ -2,7 +2,7 @@
     "name":"Arch Linux",
     "identify" : "which pacman",
     "order" : 0,
-    "pre" : ["sudo pacman -Syu --noconfirm","sudo pacman -S xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
+    "pre" : ["sudo pacman -Syu --noconfirm","sudo pacman --noconfirm -S xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -77,14 +77,14 @@
             "comm":["sudo pacman -S --noconfirm gnome"]
         },
         {
-            "name":"i3",
-            "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm i3 dmenu pcmanfm polkit-gnome"]
-        },
-        {
             "name":"Hyprland",
             "DM":"SDDM",
             "comm":["sudo pacman -S --noconfirm hyprland xorg-xwayland waybar dunst libnotify pcmanfm polkit-gnome"]
+        },
+        {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm i3 dmenu pcmanfm polkit-gnome"]
         },
         {
             "name":"KDE Plasma",
@@ -148,7 +148,7 @@
         },
         {
             "name":"Install flatpak",
-            "comm":["sudo pacman -S flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "comm":["sudo pacman -S --noconfirm flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -156,7 +156,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["sudo pacman -S sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            "comm":["sudo pacman -S --noconfirm sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }
