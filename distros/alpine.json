@@ -1,5 +1,5 @@
 {
-    "name":"Arch Linux",
+    "name":"Alpine Linux",
     "identify" : "which apk",
     "order" : 7,
     "pre" : ["sudo setup-xorg-base","sudo apk add elogind pipewire wireplumber pipewire-pulse exa micro gvfs neofetch xterm bluez bluez-openrc polkit-elogind pipewire-spa-bluez blueman polkit linux-firmware gst-plugin-pipewire udisks2 dbus-x11"],
