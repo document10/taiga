@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo zypper install -y awesome pcmanfm"]
+            "comm": ["sudo zypper install -y awesome pcmanfm dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -72,6 +72,11 @@
             "comm":["sudo zypper install -y -t pattern gnome"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y i3 dmenu i3status dunst pcmanfm libnotify"]
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "comm":["sudo zypper install -y -t pattern kde kde_plasma"]
@@ -92,9 +97,29 @@
             "comm":["sudo zypper install -y patterns-mate-mate"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y openbox obconf dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y sway swaybg swaylock swayidle waybar dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y weston dunst pcmanfm libnotify"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo zypper install -y -t pattern xfce"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y xmonad ghc-xmonad-contrib dunst libnotify"]
         }
     ],
     "tasks" : [

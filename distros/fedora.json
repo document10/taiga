@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo dnf install -y awesome pcmanfm"]
+            "comm": ["sudo dnf install -y awesome pcmanfm dunst polkit-gnome libnotify"]
         },
         {
             "name":"Budgie",
@@ -92,9 +92,29 @@
             "comm":["sudo dnf group install -y 'MATE Desktop'","sudo dnf group install -y 'MATE Applications'"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo dnf install -y openbox obconf dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo dnf install -y sway swaybg swaylock swayidle waybar dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y weston dunst pcmanfm libnotify"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo dnf group install -y 'Xfce Desktop'"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo dnf install -y xmonad ghc-xmonad-contrib polkit-gnome dunst polkit-gnome libnotify"]
         }
     ],
     "tasks" : [

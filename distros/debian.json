@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo apt install -y awesome pcmanfm"]
+            "comm": ["sudo apt install -y awesome pcmanfm dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -60,6 +60,11 @@
             "name":"GNOME",
             "DM":"GDM",
             "comm":["sudo apt install -y task-gnome-desktop"]
+        },
+        {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y libnotify i3 dunst pcmanfm"]
         },
         {
             "name":"KDE Plasma",
@@ -82,9 +87,29 @@
             "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y openbox obconf dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm dunst libnotify"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y weston xwayland pcmanfm dunst libnotify"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo apt install -y task-xfce-desktop"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst libnotify"]
         }
     ],
     "tasks" : [

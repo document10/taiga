@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo apt install -y awesome pcmanfm"]
+            "comm": ["sudo apt install -y awesome pcmanfm dunst"]
         },
         {
             "name":"Budgie (Ubuntu-branded)",
@@ -87,6 +87,11 @@
             "comm":["sudo apt install -y task-gnome-desktop"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y i3 dunst pcmanfm"]
+        },
+        {
             "name":"KDE Plasma (Ubuntu-branded)",
             "DM":"",
             "comm":["sudo apt install -y kubuntu-desktop"]
@@ -122,6 +127,21 @@
             "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y openbox obconf dunst pcmanfm"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm dunst"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y weston xwayland pcmanfm dunst"]
+        },
+        {
             "name":"XFCE (Ubuntu-branded)",
             "DM":"",
             "comm":["sudo apt install -y xubuntu-desktop"]
@@ -130,6 +150,11 @@
             "name":"XFCE (Vanilla)",
             "DM":"LightDM",
             "comm":["sudo apt install -y task-xfce-desktop"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst"]
         }
     ],
     "tasks" : [
