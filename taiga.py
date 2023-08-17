@@ -23,7 +23,7 @@ def clear():
 def opt_menu(options,text,index=0,hint=0):
     clear()
     if hint == 1:
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
         return menu.show()
     else:
         menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
@@ -36,14 +36,14 @@ def conf_menu(items,text,skip,index=0):
         options = []
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
         return menu.show()
     else:
         options = ["Skip"]
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
-        return (menu.show() or -1)-1
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        return menu.show()-1
 
 #selection menu
 def select_menu(items,text,selected):
@@ -128,27 +128,27 @@ def main_menu(build,distros,index):
         case 1:
             #change graphics driver
             choice = conf_menu(distros[build["distro"]]["GD"],"Select your graphics driver:",1,build["GD"]+1)
-            if choice != -2:
-                build["GD"]=choice
+            
+            build["GD"]=choice
             main_menu(build,distros,action)
         case 2:
             #change display manager
             choice = conf_menu(distros[build["distro"]]["DM"],"Select your display manager:",1,build["DM"]+1)
-            if choice!= -2:
-                build["DM"] = choice
+            
+            build["DM"] = choice
             main_menu(build,distros,action)
         case 3:
             #change desktop emvironment
             choice = conf_menu(distros[build["distro"]]["DE"],"Select your desktop environment:",1,build["DE"]+1)
-            if choice != -2:
-                build["DE"] = choice
-                #autoassign display manager
-                i = 0
-                if build["DE"]!=-1:
-                    for dm in distros[build["distro"]]["DM"]:
-                        if dm["name"] == distros[build["distro"]]["DE"][build["DE"]]["DM"]:
-                            build["DM"] = i
-                        i+=1
+            
+            build["DE"] = choice
+            #autoassign display manager
+            i = 0
+            if build["DE"]!=-1:
+                for dm in distros[build["distro"]]["DM"]:
+                    if dm["name"] == distros[build["distro"]]["DE"][build["DE"]]["DM"]:
+                        build["DM"] = i
+                    i+=1
             main_menu(build,distros,action)
         case 5:
             #toggle tasks

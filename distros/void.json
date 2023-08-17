@@ -99,12 +99,12 @@
         {
             "name":"Sway",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y sway swaybg swaylock swayidle xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify seatd","sudo ln -s /etc/sv/seatd /var/service"]
+            "comm":["sudo xbps-install -y sway swaybg swaylock swayidle xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify elogind","sudo ln -s /etc/sv/elogind /var/service"]
         },
         {
             "name":"Weston",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y weston weston-xwayland xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify seatd","sudo ln -s /etc/sv/seatd /var/service"]
+            "comm":["sudo xbps-install -y weston weston-xwayland xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify elogind","sudo ln -s /etc/sv/elogind /var/service"]
         },
         {
             "name":"XFCE",
