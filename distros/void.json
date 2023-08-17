@@ -104,7 +104,7 @@
         {
             "name":"Weston",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y weston weston-xwayland xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify elogind","sudo ln -s /etc/sv/elogind /var/service"]
+            "comm":["sudo xbps-install -y weston weston-xwayland xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify seatd","sudo ln -s /etc/sv/seatd /var/service"]
         },
         {
             "name":"XFCE",
