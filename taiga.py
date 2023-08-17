@@ -53,7 +53,11 @@ def select_menu(items,text,selected):
 
 #builds the script for execution
 def script(build,distro,name = "taiga_"+str(math.ceil(time.time()))):
-    file = open(name,"x")
+    file = ""
+    try:
+        file = open(name,"x")
+    except:
+        file = open("taiga_"+str(math.ceil(time.time())*2),"x")
     if 0 in build["options"]:
         file.write("echo Configuring base system\n")
         for b in distro["pre"]:
@@ -195,7 +199,10 @@ def main_menu(build,distros,index):
                 #begin install
                 file = script(build,distros[build["distro"]])
                 clear()
-                os.system("sh "+file)
+                try:
+                    os.system("sh "+file)
+                except:
+                    print("Installation failed.")
                 sys.exit()
             else:
                 #return to main menu
@@ -204,7 +211,11 @@ def main_menu(build,distros,index):
             #save config
             clear()
             name = input("Type file name here:\n") or "config_"+str(math.ceil(time.time()))+".json"
-            file = open(name,"x")
+            file = ""
+            try:
+                file = open(name,"x")
+            except:
+                file = open("config_"+str(math.ceil(time.time())*2)+".json","x")
             file.write(json.dumps(build))
             file.close()
             opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
