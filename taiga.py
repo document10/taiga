@@ -36,13 +36,13 @@ def conf_menu(items,text,skip,index=0):
         options = []
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
         return menu.show()
     else:
         options = ["Skip"]
         for i in items:
             options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select \nEscape/Q:Cancel",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
         return menu.show()-1
 
 #selection menu
