@@ -23,10 +23,10 @@ def clear():
 def opt_menu(options,text,index=0,hint=0):
     clear()
     if hint == 1:
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
         return menu.show()
     else:
-        menu = TerminalMenu(options,menu_cursor=(None),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
         return menu.show()
 
 #configs menu
@@ -215,7 +215,7 @@ def main_menu(build,distros,index):
             name = input("Type file name here:\n") or "taiga_"+str(math.ceil(time.time()))
             file = script(build,distros[build["distro"]],name)
             clear()
-            ok = opt_menu(["Return"],"All commands have been saved to "+ file)
+            ok = opt_menu(["Press enter to continue"],"All commands have been saved to "+ file)
             main_menu(build,distros,action)
         case 11:
             #exit
