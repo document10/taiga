@@ -134,7 +134,7 @@
         {
             "name":"Xmonad",
             "DM":"LightDM",
-            "comm":["sudo pacman -S --noconfirm xmonad xmonad-conftrib pcmanfm polkit-gnome dunst libnotify dmenu"]
+            "comm":["sudo pacman -S --noconfirm xmonad xmonad-contrib pcmanfm polkit-gnome dunst libnotify dmenu"]
         }
     ],
     "tasks" : [
