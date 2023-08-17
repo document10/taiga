@@ -107,7 +107,7 @@
         {
             "name":"Sway",
             "DM":"LightDM",
-            "comm":["sudo pkg install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm polkit-gnome dunst libnotify"]
+            "comm":["sudo pkg install -y wayland seatd sway swaybg swaylock dmenu-wayland dmenu swayidle waybar xwayland pcmanfm polkit-gnome dunst libnotify","export XDG_RUNTIME_DIR=/var/run/user/`id -u`","sudo sysrc seatd_enable=YES"]
         },
         {
             "name":"XFCE",
