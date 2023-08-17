@@ -114,7 +114,7 @@
         {
             "name":"Xmonad",
             "DM":"LightDM",
-            "comm":["sudo xbps-install -y xmonad xmonad-conftrib pcmanfm polkit-gnome dunst libnotify dmenu"]
+            "comm":["sudo xbps-install -y xmonad xmonad-conftrib polybar pcmanfm polkit-gnome dunst libnotify dmenu"]
         }
     ],
     "tasks" : [
