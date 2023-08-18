@@ -154,7 +154,7 @@
         {
             "name":"Xmonad",
             "DM":"LightDM",
-            "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst"]
+            "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst suckless-tools"]
         }
     ],
     "tasks" : [
