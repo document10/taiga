@@ -216,7 +216,25 @@ def main_menu(build,distros,index):
                 file = open(name,"x")
             except:
                 file = open("config_"+str(math.ceil(time.time())*2)+".json","x")
-            file.write(json.dumps(build))
+            config = {
+                "version":version,
+                "distro" : distros[build["distro"]]["name"],
+                "GD" :  -1,
+                "DM" :  -1,
+                "DE" :  -1,
+                "tasks" : [],
+                "options":build["options"]
+            }
+            if build["GD"]!=-1:
+                config["GD"]=distros[build["distro"]]["GD"][build["GD"]]["name"]
+            if build["DM"]!=-1:
+                config["DM"]=distros[build["distro"]]["DM"][build["DM"]]["name"]
+            if build["DE"]!=-1:
+                config["DE"]=distros[build["distro"]]["DE"][build["DE"]]["name"]
+            if len(build["tasks"]) != 0 :
+                for t in build["tasks"]:
+                    config["tasks"].append(distros[build["distro"]]["tasks"][t]["name"])
+            file.write(json.dumps(config))
             file.close()
             opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
             main_menu(build,distros,action)
@@ -235,10 +253,20 @@ def main_menu(build,distros,index):
             sys.exit()
 
 #load configs from args
-def load():
+def load(distros):
     if len(sys.argv) < 2:
         return 0
     else:
+        build = {}
+        config = {
+            "version":version,
+            "distro" : -1,
+            "GD" : -1,
+            "DM" : -1,
+            "DE" : -1,
+            "tasks" : [],
+            "options":[0,1]
+        }
         try:
             file = open(sys.argv[1],"r") 
             build = json.loads(file.read())
@@ -254,7 +282,56 @@ def load():
                 sys.exit()
         #checks if the config has all the necesary options
         if "version" in build and "distro" in build and "GD" in build and "DM" in build and "DE" in build and "tasks" in build and "options" in build:
-            return build
+            #convert from names to indexes
+            names = []
+            for d in distros:
+                names.append(d["name"])
+            try:
+                config["distro"]=names.index(build["distro"])
+            except:
+                ok = opt_menu(["Discard config","Exit"],"Supplied config is invalid.")
+                if ok == 0:
+                    return 0
+                else:
+                    clear()
+                    print("Installation aborted")
+                    sys.exit()
+            names = []
+            if build["GD"]!=-1:
+                for d in distros[config["distro"]]["GD"]:
+                    names.append(d["name"])
+                try:
+                    config["GD"]=names.index(build["GD"])
+                except:
+                    config["GD"]=-1
+            names = []
+            if build["DM"]!=-1:
+                for d in distros[config["distro"]]["DM"]:
+                    names.append(d["name"])
+                try:
+                    config["DM"]=names.index(build["DM"])
+                except:
+                    config["DM"]=-1
+            names = []
+            if build["DE"]!=-1:
+                for d in distros[config["distro"]]["DE"]:
+                    names.append(d["name"])
+                try:
+                    config["DE"]=names.index(build["DE"])
+                except:
+                    config["DE"]=-1
+            names = []
+            if len(build["tasks"])!=0:
+                for d in distros[config["distro"]]["tasks"]:
+                    names.append(d["name"])
+                for t in build["tasks"]:
+                    try:
+                        config["tasks"].append(names.index(t))
+                    except:
+                        print("error")
+            config["options"]=build["options"]
+            config["version"]=build["version"]
+            return config
         else:
             ok = opt_menu(["Discard config","Exit"],"This config is incompatible with this version of TAIGA.")
             if ok == 0:
@@ -310,7 +387,7 @@ def main():
         print("Couldn't load info about the distros.Redownload the script and try again.")
         sys.exit(1)
     #info about current config
-    build = load()
+    build = load(distros)
     distro = {}
     if build == 0:
         #no config was loaded,loads the default config
