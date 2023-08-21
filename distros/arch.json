@@ -139,7 +139,7 @@
     ],
     "tasks" : [
         {
-            "name":"Install paru(AUR helper)",
+            "name":"Install paru (AUR helper)",
             "comm":["sudo pacman -S --noconfirm cargo", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si"]
         },
         {

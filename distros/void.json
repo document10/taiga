@@ -114,7 +114,7 @@
     ],
     "tasks" : [
         {
-            "name":"Configure additional repositories",
+            "name":"Configure extra repositories",
             "comm":["sudo xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree","sudo xbps-install -Syuv"]
         },
         {
