@@ -115,7 +115,7 @@
     "tasks" : [
         {
             "name":"Configure additional repositories",
-            "comm":["sudo xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree"]
+            "comm":["sudo xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree","sudo xbps-install -Syuv"]
         },
         {
             "name" : "Install flatpak",
