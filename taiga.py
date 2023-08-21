@@ -6,35 +6,28 @@ from simple_term_menu import TerminalMenu
 import time
 import os
 import json
-import subprocess
 import sys
 import math
 
 #will be important for future versions
 version = 0.4
 
-#clears screen
-def clear():
-    os.system("clear")
-
-#functions for creating menus
+###functions for creating menus
 
 #generic menu
 def opt_menu(options,text,index=0,hint=0):
-    clear()
     if hint == 1:
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_purple","bold"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=(""),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_purple","bold"),clear_screen=True)
         return menu.show()
     else:
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=(""),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,clear_screen=True)
         return menu.show()
 
 #configs menu
 def conf_menu(items,text,skip,index=0):
-    clear()
     if skip == 0:
         options = []
-        sc = ["[0] ","[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] "]
+        sc = ["[0] ","[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] ","[j] ","[k] ","[l] ","[m] ","[n] ","[o] ","[p] ","[q] ","[r] ","[s] ","[t] ","[u] ","[v] ","[w] ","[x] ","[y] ","[z] "]
         n = 0
         for i in items:
             if len(items) < 11:
@@ -42,7 +35,7 @@ def conf_menu(items,text,skip,index=0):
             else:
                 options.append(sc[n]+i["name"])
             n+=1
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_red","bold"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=(""),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_red","bold"),clear_screen=True)
         return menu.show()
     else:
         options = ["[0] Skip"]
@@ -54,13 +47,12 @@ def conf_menu(items,text,skip,index=0):
             else:
                 options.append(sc[n]+i["name"])
             n+=1
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_blue","bold"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=(""),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_blue","bold"),clear_screen=True)
         return menu.show()-1
 
 #selection menu
 def select_menu(items,text,selected):
-    clear()
-    terminal_menu = TerminalMenu(items,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_yellow","fg_black"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title=text,multi_select_cursor_style=("fg_red","bold"),preselected_entries=selected,status_bar="\nArrow keys:Navigate options\nTab/Space:Toggle options\nEnter:Confirm selection\n/:Search",status_bar_style=("fg_cyan","italics"),exit_on_shortcut=False)
+    terminal_menu = TerminalMenu(items,menu_cursor=(None),quit_keys=(""),menu_highlight_style=("bg_yellow","fg_black"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title=text,multi_select_cursor_style=("fg_red","bold"),preselected_entries=selected,status_bar="\nArrow keys:Navigate options\nTab/Space:Toggle options\nEnter:Confirm selection\n/:Search",status_bar_style=("fg_cyan","italics"),exit_on_shortcut=False,clear_screen=True)
     return terminal_menu.show()
 
 #builds the script for execution
@@ -106,6 +98,7 @@ def script(build,distro,name = "taiga_"+str(math.ceil(time.time()))):
     else:
         file.write("echo Installation complete!")
     file.close()
+    os.system("clear")
     return file.name
             
 
@@ -134,29 +127,25 @@ def main_menu(build,distros,index):
         case 0:
             #change user distro
             choice = conf_menu(distros,"Select your distro from the list of supported distros:",0,build["distro"])
-            if choice != None:
-                build["distro"] = choice
-                build["GD"] = get_gpu(distros[build["distro"]])
-                build["DM"] = -1
-                build["DE"] = -1
-                build["tasks"] = []
+            build["distro"] = choice
+            build["GD"] = get_gpu(distros[build["distro"]])
+            build["DM"] = -1
+            build["DE"] = -1
+            build["tasks"] = []
             main_menu(build,distros,action)
         case 1:
             #change graphics driver
             choice = conf_menu(distros[build["distro"]]["GD"],"Select your graphics driver:",1,build["GD"]+1)
-            
             build["GD"]=choice
             main_menu(build,distros,action)
         case 2:
             #change display manager
             choice = conf_menu(distros[build["distro"]]["DM"],"Select your display manager:",1,build["DM"]+1)
-            
             build["DM"] = choice
             main_menu(build,distros,action)
         case 3:
             #change desktop emvironment
             choice = conf_menu(distros[build["distro"]]["DE"],"Select your desktop environment:",1,build["DE"]+1)
-            
             build["DE"] = choice
             #autoassign display manager
             i = 0
@@ -183,7 +172,6 @@ def main_menu(build,distros,index):
             main_menu(build,distros,action)
         case 8:
             #install
-            clear()
             #shows installation options
             msg ="Final options:\nOS:"+ distros[build["distro"]]["name"]+"\n"
             if build["GD"]!=-1:
@@ -203,14 +191,12 @@ def main_menu(build,distros,index):
                 msg += "Skip final configuration\n"
             if 2 in build["options"]:
                 msg += "Reboot after install\n"    
-            
             msg +="\nConfirm?"
             #ask for confirmation
             ok = opt_menu(["[y] Yes","[n] No"],msg)
             if ok == 0:
                 #begin install
                 file = script(build,distros[build["distro"]])
-                clear()
                 try:
                     os.system("sh "+file)
                 except:
@@ -221,10 +207,9 @@ def main_menu(build,distros,index):
                 main_menu(build,distros,action)
         case 9:
             #save config
-            clear()
-            name = input("Type file name here:\n") or "config_"+str(math.ceil(time.time()))+".json"
             file = ""
             try:
+                name = input("Type file name here:\n") or "config_"+str(math.ceil(time.time()))+".json"
                 file = open(name,"x")
             except:
                 file = open("config_"+str(math.ceil(time.time())*2)+".json","x")
@@ -251,16 +236,17 @@ def main_menu(build,distros,index):
             opt_menu(["Press enter to continue"],"Config saved to "+file.name+".You can now load the config using:\n./taiga "+file.name)
             main_menu(build,distros,action)
         case 10:
-            #save script
-            clear()
-            name = input("Type file name here:\n") or "taiga_"+str(math.ceil(time.time()))
+            #save script            
+            name = ""
+            try:
+                name = input("Type file name here:\n") or "taiga_"+str(math.ceil(time.time()))
+            except:
+                name = "taiga_"+str(math.ceil(time.time())*2)
             file = script(build,distros[build["distro"]],name)
-            clear()
             ok = opt_menu(["Press enter to continue"],"All commands have been saved to "+ file)
             main_menu(build,distros,action)
         case 11:
             #exit
-            clear()
             print("Installation aborted.")
             sys.exit()
 
@@ -289,7 +275,6 @@ def load(distros):
             if ok == 0:
                 return 0
             else:
-                clear()
                 print("Installation aborted")
                 sys.exit()
         #checks if the config has all the necesary options
@@ -343,7 +328,6 @@ def load(distros):
             if ok == 0:
                 return 0
             else:
-                clear()
                 print("Installation aborted")
                 sys.exit()
 
@@ -362,7 +346,6 @@ def serialize():
 
 #(attempt to) get the distro
 def get_distro(distros):
-    clear()
     for d in distros:
         r = os.system(d["identify"])
         if r == 0:
@@ -419,7 +402,6 @@ def main():
                 sys.exit(1)
             distro = distros[build["distro"]]
             build["GD"]=get_gpu(distro)
-        clear()
     main_menu(build,distros,0)
 
 #just some boilerplate
