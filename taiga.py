@@ -23,7 +23,7 @@ def clear():
 def opt_menu(options,text,index=0,hint=0):
     clear()
     if hint == 1:
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_purple","bold"))
         return menu.show()
     else:
         menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_cyan","fg_black"),title=text,skip_empty_entries=True,cursor_index=index)
@@ -34,21 +34,33 @@ def conf_menu(items,text,skip,index=0):
     clear()
     if skip == 0:
         options = []
+        sc = ["[0] ","[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] "]
+        n = 0
         for i in items:
-            options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
+            if len(items) < 11:
+                options.append("["+str(n)+"]"+i["name"])
+            else:
+                options.append(sc[n]+i["name"])
+            n+=1
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_purple","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_red","bold"))
         return menu.show()
     else:
-        options = ["Skip"]
+        options = ["[0] Skip"]
+        sc = ["[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] ","[j] ","[k] ","[l] ","[m] ","[n] ","[o] ","[p] ","[q] ","[r] ","[s] ","[t] ","[u] ","[v] ","[w] ","[x] ","[y] ","[z] "]
+        n=1
         for i in items:
-            options.append(i["name"])
-        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select",status_bar_style=("fg_green","italics"))
+            if len(items) < 11:
+                options.append("["+str(n)+"]"+i["name"])
+            else:
+                options.append(sc[n]+i["name"])
+            n+=1
+        menu = TerminalMenu(options,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_blue","fg_black"),title=text,cursor_index=index,status_bar="\nArrow keys:Navigate options\nEnter:Select\n/:Search\nPress the key in braces to quickly select the option",status_bar_style=("fg_green","italics"),shortcut_key_highlight_style=("fg_blue","bold"))
         return menu.show()-1
 
 #selection menu
 def select_menu(items,text,selected):
     clear()
-    terminal_menu = TerminalMenu(items,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_yellow","fg_black"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title=text,multi_select_cursor_style=("fg_red","bold"),preselected_entries=selected,status_bar="\nArrow keys:Navigate options\nTab/Space:Toggle options\nEnter:Confirm selection",status_bar_style=("fg_blue","italics"))
+    terminal_menu = TerminalMenu(items,menu_cursor=(None),quit_keys=("none"),menu_highlight_style=("bg_yellow","fg_black"),multi_select=True,multi_select_select_on_accept=False,multi_select_empty_ok=True,title=text,multi_select_cursor_style=("fg_red","bold"),preselected_entries=selected,status_bar="\nArrow keys:Navigate options\nTab/Space:Toggle options\nEnter:Confirm selection\n/:Search",status_bar_style=("fg_cyan","italics"),exit_on_shortcut=False)
     return terminal_menu.show()
 
 #builds the script for execution
@@ -100,7 +112,7 @@ def script(build,distro,name = "taiga_"+str(math.ceil(time.time()))):
 #main menu
 def main_menu(build,distros,index):
     #create base options
-    options = ["Distro:","Graphics:","Display manager:","Desktop environment:","","Extra tasks:"+str(len(build["tasks"])),"Additional options","","Install","Save config to file","Build script","Exit"]
+    options = ["[o] Distro:","[g] Graphics:","[m] Display manager:","[d] Desktop environment:","","[x] Extra tasks:"+str(len(build["tasks"])),"[a] Additional options","","[i] Install","[s] Save config to file","[b] Build script","[q] Quit installation"]
     options[0]+=distros[build["distro"]]["name"]
     if build["GD"]==-1:
         options[1]+=" None"
@@ -124,7 +136,7 @@ def main_menu(build,distros,index):
             choice = conf_menu(distros,"Select your distro from the list of supported distros:",0,build["distro"])
             if choice != None:
                 build["distro"] = choice
-                build["GD"] = -1
+                build["GD"] = get_gpu(distros[build["distro"]])
                 build["DM"] = -1
                 build["DE"] = -1
                 build["tasks"] = []
@@ -194,7 +206,7 @@ def main_menu(build,distros,index):
             
             msg +="\nConfirm?"
             #ask for confirmation
-            ok = opt_menu(["Yes","No"],msg)
+            ok = opt_menu(["[y] Yes","[n] No"],msg)
             if ok == 0:
                 #begin install
                 file = script(build,distros[build["distro"]])
@@ -273,7 +285,7 @@ def load(distros):
             file.close()
         except:
             #config is invalid
-            ok = opt_menu(["Discard config","Exit"],"Couldn't load the config.The config is either corrupted or doesn't exist.")
+            ok = opt_menu(["[d] Discard config","[x] Exit"],"Couldn't load the config.The config is either corrupted or doesn't exist.")
             if ok == 0:
                 return 0
             else:
@@ -289,13 +301,7 @@ def load(distros):
             try:
                 config["distro"]=names.index(build["distro"])
             except:
-                ok = opt_menu(["Discard config","Exit"],"Supplied config is invalid.")
-                if ok == 0:
-                    return 0
-                else:
-                    clear()
-                    print("Installation aborted")
-                    sys.exit()
+                config["distro"]=get_distro(distros)
             names = []
             if build["GD"]!=-1:
                 for d in distros[config["distro"]]["GD"]:
@@ -303,7 +309,7 @@ def load(distros):
                 try:
                     config["GD"]=names.index(build["GD"])
                 except:
-                    config["GD"]=-1
+                    config["GD"]=get_gpu(distros[config["distro"]])
             names = []
             if build["DM"]!=-1:
                 for d in distros[config["distro"]]["DM"]:
@@ -333,7 +339,7 @@ def load(distros):
             config["version"]=build["version"]
             return config
         else:
-            ok = opt_menu(["Discard config","Exit"],"This config is incompatible with this version of TAIGA.")
+            ok = opt_menu(["[d] Discard config","[x] Exit"],"This config is incompatible with this version of TAIGA.")
             if ok == 0:
                 return 0
             else:
