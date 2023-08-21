@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo zypper install -y awesome pcmanfm"]
+            "comm": ["sudo zypper install -y awesome pcmanfm dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -72,6 +72,11 @@
             "comm":["sudo zypper install -y -t pattern gnome"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y i3 dmenu i3status dunst pcmanfm libnotify"]
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "comm":["sudo zypper install -y -t pattern kde kde_plasma"]
@@ -92,15 +97,43 @@
             "comm":["sudo zypper install -y patterns-mate-mate"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y openbox obconf dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y sway swaybg swaylock swayidle waybar dunst pcmanfm libnotify"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y weston dunst pcmanfm libnotify"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo zypper install -y -t pattern xfce"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo zypper install -y xmonad ghc-xmonad-contrib dunst libnotify"]
         }
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
-            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy","sudo zypper install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "name" : "Configure extra repositories",
+            "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy"]
+        },
+        {
+            "name":"Install snapd",
+            "comm":["sudo zypper install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+        },
+        {
+            "name":"Install flatpak",
+            "comm":["sudo zypper install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -108,7 +141,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+            "comm":["sudo zypper install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

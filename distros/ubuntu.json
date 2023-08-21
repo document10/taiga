@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo apt install -y awesome pcmanfm"]
+            "comm": ["sudo apt install -y awesome pcmanfm dunst"]
         },
         {
             "name":"Budgie (Ubuntu-branded)",
@@ -87,6 +87,11 @@
             "comm":["sudo apt install -y task-gnome-desktop"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y i3 dunst pcmanfm"]
+        },
+        {
             "name":"KDE Plasma (Ubuntu-branded)",
             "DM":"",
             "comm":["sudo apt install -y kubuntu-desktop"]
@@ -122,6 +127,21 @@
             "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y openbox obconf dunst pcmanfm"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm dunst"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y weston xwayland pcmanfm dunst"]
+        },
+        {
             "name":"XFCE (Ubuntu-branded)",
             "DM":"",
             "comm":["sudo apt install -y xubuntu-desktop"]
@@ -130,12 +150,25 @@
             "name":"XFCE (Vanilla)",
             "DM":"LightDM",
             "comm":["sudo apt install -y task-xfce-desktop"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst suckless-tools"]
         }
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
-            "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade","sudo apt install -y flatpak snapd","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo","sudo snap install core"]
+            "name" : "Configure extra repositories",
+            "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade"]
+        },
+        {
+            "name":"Install snapd",
+            "comm":["sudo apt install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+        },
+        {
+            "name":"Install flatpak",
+            "comm":["sudo apt install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -143,7 +176,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+            "comm":["sudo apt install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

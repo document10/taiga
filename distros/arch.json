@@ -2,7 +2,7 @@
     "name":"Arch Linux",
     "identify" : "which pacman",
     "order" : 0,
-    "pre" : ["sudo pacman -Syu --noconfirm xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
+    "pre" : ["sudo pacman -Syu --noconfirm","sudo pacman --noconfirm -S xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
     "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
     "GD" : [
         {
@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo pacman -S --noconfirm awesome pcmanfm polkit-gnome"]
+            "comm": ["sudo pacman -S --noconfirm awesome pcmanfm polkit-gnome dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -77,9 +77,19 @@
             "comm":["sudo pacman -S --noconfirm gnome"]
         },
         {
+            "name":"Hyprland",
+            "DM":"SDDM",
+            "comm":["sudo pacman -S --noconfirm hyprland xorg-xwayland waybar dunst libnotify pcmanfm polkit-gnome"]
+        },
+        {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm i3 dmenu pcmanfm polkit-gnome"]
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
-            "comm":["sudo pacman -S --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm"]
+            "comm":["sudo pacman -S --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm dunst libnotify"]
         },
         {
             "name":"LXDE",
@@ -97,20 +107,48 @@
             "comm":["sudo pacman -S --noconfirm mate mate-extra polkit-gnome"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm openbox obconf menumaker alacritty pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
             "name":"Pantheon",
             "DM":"LightDM",
             "comm":["sudo pacman -S --noconfirm pantheon"]
         },
         {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm sway swaybg swaylock swayidle xorg-xwayland waybar swayimg pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
+            "name":"Weston",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm weston xorg-xwayland pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies polkit-gnome"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo pacman -S --noconfirm xmonad xmonad-contrib pcmanfm polkit-gnome dunst libnotify dmenu"]
         }
     ],
     "tasks" : [
         {
-            "name":"Configure extra sources",
-            "comm":["sudo pacman -S --noconfirm cargo flatpak", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si","git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            "name":"Install paru (AUR helper)",
+            "comm":["sudo pacman -S --noconfirm cargo", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si"]
+        },
+        {
+            "name":"Install snapd",
+            "comm":["git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+        },
+        {
+            "name":"Install flatpak",
+            "comm":["sudo pacman -S --noconfirm flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
             "name":"Install recommended packages",
@@ -118,7 +156,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+            "comm":["sudo pacman -S --noconfirm sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }

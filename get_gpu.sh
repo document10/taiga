@@ -1,1 +1,1 @@
-lspci | grep VGA
+lspci -v | grep -i "VGA"

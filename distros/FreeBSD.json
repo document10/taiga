@@ -2,7 +2,7 @@
     "name":"FreeBSD",
     "identify" : "pkg -v",
     "order" : 3,
-    "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr bsdisks octopkg"],
+    "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr bsdisks"],
     "post" : ["sudo sysrc dbus_enable=YES","sudo sysrc hald_enable=YES","sudo sysrc sound_load=YES","sudo sysrc snd_hda_load=YES","sudo sysrc moused_enable=YES","sudo sysrc snd_driver=YES"],
     "GD" : [
         {
@@ -52,7 +52,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo pkg install -y awesome pcmanfm"]
+            "comm": ["sudo pkg install -y awesome pcmanfm polkit-gnome dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -75,6 +75,11 @@
             "comm":["sudo pkg install -y gnome polkit-gnome"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y i3 dmenu pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "comm":["sudo pkg install -y kde5"]
@@ -95,15 +100,30 @@
             "comm":["sudo pkg install -y mate mate-themes polkit-gnome"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y openbox obconf menumaker pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y wayland seatd sway swaybg swaylock dmenu-wayland dmenu swayidle waybar xwayland pcmanfm polkit-gnome dunst libnotify","export XDG_RUNTIME_DIR=/var/run/user/`id -u`","sudo sysrc seatd_enable=YES"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo pkg install -y polkit-gnome xfce"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo pkg install -y hs-xmonad pcmanfm polkit-gnome dunst libnotify"]
         }
     ],
     "tasks" : [
         {
             "name":"Install recommended packages",
-            "comm":["sudo pkg -y install vlc firefox libreoffice"]
+            "comm":["sudo pkg -y install vlc firefox libreoffice octopkg"]
         }
     ]
 }

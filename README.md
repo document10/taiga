@@ -1,29 +1,30 @@
 # TAIGA
-Taiga or Terminal Application for Installing Graphical Appliances is a terminal script for configuring a desktop environment on the system.
-## Installer types
-**1.Express install:** The script will detect the distro and the GPU used,and you can pick the desktop environment,which will be installed with the appropriate display manager.  
-**2.Custom install:** Pick all options manually.Useful if auto-detection doesn't work or if some components are not needed  
-Aditionally you can run the script in diffrent modes by adding these arguments after the script:  
-- *s* : Simulation mode-no changes will be done to the system
-- *l* [`filepath`]: loads configuration from the file specified in [filepath]
-- *sl* / *ls* [`filepath`]: loads configuration from the file specified in [filepath] and enters Simulation mode
-- *h* : shows this screen and exits
-## Prerequisites
-The script requires `python`,`sudo` and `pciutils` in order to run.Please check commands for installing these dependencies as well as whether they're already configured on your system or not here:  
-[https://github.com/document10/taiga/info/distros.md](https://github.com/document10/taiga/blob/master/info/distros.md)
-## Running the script
-Currently there are two ways to run the script:  
-### Method 1:Using python
-```sh
-python3 taiga.py [args]
+Taiga or Terminal Application for Installing Graphical Appliances is a terminal program for configuring a desktop environment,sound server and other useful components on the system.The application is controlled using the keyboard and you will see what keys to press for performing actions in the app.
+## Running TAIGA
+For running the program you will need `sudo` and `pciutils` installed on the system.Guides for installing and checking if these components are installed are available on the wiki.  
+### Running from binary
+The `master` or `dev` branches won't include binaries by default,instead those are included on the `bin` branches which contain only the binary specific to the platform.To get the `Linux` binary run:
 ```
-or
-```sh
-python taiga.py [args]
+git clone https://github.com/document10/taiga -b bin_linux
 ```
-### Method 2:Using shell commands
-```sh
-chmod +X taiga.py #only run once
-./taiga.py [args]
+And for the `FreeBSD` binary run:
 ```
-Note:This method does not work on FreeBSD as all user-installed binaries are stored in `/usr/local/bin`,as opposed to `/usr/bin`.FreeBSD users must use **Method 1**.  
+git clone https://github.com/document10/taiga -b bin_fbsd
+```
+The binaries are also avalaible on the [Releases](https://github.com/document10/taiga/releases) page.  
+After getting the binary relevant to your system,ensure you have enough rights to run the binary using:
+
+```sh
+sudo chmod 777 taiga
+```
+Running the script is pretty straightforward:
+```sh
+./taiga
+```
+You can also load a config created with the script using:
+```sh
+./taiga [configfile]
+```
+where [configfile] is the path to the config. 
+### Running from source
+You will additionally need the latest version of python as well as `simple-term-menu` as a `pip` library.Instructions on setting up those are on the wiki.

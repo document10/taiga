@@ -1,8 +1,8 @@
 {
     "name":"Void Linux",
     "identify" : "xbps-install -V",
-    "order" : 5,
-    "pre" : ["sudo xbps-install -Syuv xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit"],
+    "order" : 6,
+    "pre" : ["sudo xbps-install -Syuv","sudo xbps-install -y xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit"],
     "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/avahi-daemon /var/service","sudo ln -s /etc/sv/dbus /var/service"],
     "GD" : [
         {
@@ -44,7 +44,7 @@
         {
             "name":"Awesome",
             "DM":"LightDM",
-            "comm": ["sudo xbps-install -y awesome pcmanfm polkit-gnome"]
+            "comm": ["sudo xbps-install -y awesome pcmanfm polkit-gnome dunst libnotify"]
         },
         {
             "name":"Budgie",
@@ -67,6 +67,11 @@
             "comm":["sudo xbps-install -y gnome gnome-apps polkit-gnome"]
         },
         {
+            "name":"i3",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y libnotify i3 dunst pcmanfm polkit-gnome"]
+        },
+        {
             "name":"KDE Plasma",
             "DM":"SDDM",
             "comm":["sudo xbps-install -y kde5 kde5-baseapps"]
@@ -87,14 +92,33 @@
             "comm":["sudo xbps-install -y mate mate-extra polkit-gnome"]
         },
         {
+            "name":"Openbox",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y openbox obconf menumaker pcmanfm polkit-gnome dunst libnotify"]
+        },
+        {
+            "name":"Sway",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y sway swaybg swaylock swayidle xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify elogind","sudo ln -s /etc/sv/elogind /var/service"]
+        },
+        {
             "name":"XFCE",
             "DM":"LightDM",
             "comm":["sudo xbps-install -y xfce4 polkit-gnome"]
+        },
+        {
+            "name":"Xmonad",
+            "DM":"LightDM",
+            "comm":["sudo xbps-install -y xmonad xmonad-contrib polybar pcmanfm polkit-gnome dunst libnotify dmenu"]
         }
     ],
     "tasks" : [
         {
-            "name" : "Configure extra sources",
+            "name":"Configure extra repositories",
+            "comm":["sudo xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree","sudo xbps-install -Syuv"]
+        },
+        {
+            "name" : "Install flatpak",
             "comm" : ["sudo xbps-install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
         },
         {
@@ -103,7 +127,7 @@
         },
         {
             "name":"Install extra themes",
-            "comm":["sudo xbps-install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh"]
+            "comm":["sudo xbps-install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
         }
     ]
 }
