@@ -1,4 +1,3 @@
-**Warning: This is the developement branch.Changes here may not be fully tested,so I recommend using the [master]([master](https://github.com/document10/taiga)) branch for more critical installs.**
 # TAIGA
 Taiga or Terminal Application for Installing Graphical Appliances is a terminal program for configuring a desktop environment,sound server and other useful components on the system.The application is controlled using the keyboard and you will see what keys to press for performing actions in the app.
 ## Running TAIGA
