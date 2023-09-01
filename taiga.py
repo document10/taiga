@@ -39,7 +39,7 @@ def conf_menu(items,text,skip,index=0):
         return menu.show()
     else:
         options = ["[0] Skip"]
-        sc = ["[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] ","[j] ","[k] ","[l] ","[m] ","[n] ","[o] ","[p] ","[q] ","[r] ","[s] ","[t] ","[u] ","[v] ","[w] ","[x] ","[y] ","[z] "]
+        sc = ["[0]","[1] ","[2] ","[3] ","[4] ","[5] ","[6] ","[7] ","[8] ","[9] ","[a] ","[b] ","[c] ","[d] ","[e] ","[f] ","[g] ","[h] ","[i] ","[j] ","[k] ","[l] ","[m] ","[n] ","[o] ","[p] ","[q] ","[r] ","[s] ","[t] ","[u] ","[v] ","[w] ","[x] ","[y] ","[z] "]
         n=1
         for i in items:
             if len(items) < 11:
@@ -333,15 +333,13 @@ def load(distros):
 
 #gets all data regarding distros
 def serialize():
-    distros = []
-    workdir = Path.cwd()
-    files = os.listdir(str(workdir)+"/distros")
-    for f in files:
-        file = open(str(workdir)+"/distros/"+f,"r")
-        j = json.loads(file.read())
-        distros.append(j)
-        file.close()
-    distros = sorted(distros, key=itemgetter('order'))
+    local = True
+    if local:
+        file = open("distros.json","r")
+    else:
+        print("Downoading distro info manually")
+    distros = json.loads(file.read())
+    file.close()    
     return distros
 
 #(attempt to) get the distro

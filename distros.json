@@ -1,0 +1,1034 @@
+[
+    {
+        "name":"Arch Linux",
+        "identify" : "which pacman",
+        "order" : 0,
+        "pre" : ["sudo pacman -Syu --noconfirm","sudo pacman --noconfirm -S xorg xorg-server xterm avahi xdg-user-dirs xdg-utils bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware blueman network-manager-applet gvfs exa neofetch micro polkit"],
+        "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo pacman -S --noconfirm xf86-video-amdgpu lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo pacman -S --noconfirm xf86-video-intel lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo pacman -S --noconfirm xf86-video-nouveau nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo pacman -S --noconfirm xf86-video-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo pacman -S --noconfirm xf86-video-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo pacman -S --noconfirm gdm","sudo systemctl enable gdm.service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo pacman -S --noconfirm lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo pacman -S --noconfirm sddm","sudo systemctl enable sddm.service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo pacman -S --noconfirm awesome pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm budgie budgie-desktop-view budgie-backgrounds materia-gtk-theme papirus-icon-theme polkit-gnome"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm cinnamon nemo-fileroller nemo-preview nemo-seahorse nemo-share nemo-terminal polkit-gnome"]
+            },
+            {
+                "name":"Cutefish",
+                "DM":"SDDM",
+                "comm":["sudo pacman -S --noconfirm cutefish"]
+            },
+            {
+                "name":"Deepin",
+                "DM":"SDDM",
+                "comm":["sudo pacman -S --noconfirm deepin deepin-kwin deepin-extra"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm enlightenment ecrire ephoto evisum rage terminology"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo pacman -S --noconfirm gnome"]
+            },
+            {
+                "name":"Hyprland",
+                "DM":"SDDM",
+                "comm":["sudo pacman -S --noconfirm hyprland xorg-xwayland waybar dunst libnotify pcmanfm polkit-gnome"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm i3 dmenu pcmanfm polkit-gnome"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo pacman -S --noconfirm plasma plasma-wayland-session kde-applications packagekit-qt5 sddm-kcm dunst libnotify"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm lxde polkit-gnome"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"SDDM",
+                "comm":["sudo pacman -S --noconfirm lxqt breeze-icons oxygen-icons kwin polkit-gnome"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm mate mate-extra polkit-gnome"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm openbox obconf menumaker alacritty pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Pantheon",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm pantheon"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm sway swaybg swaylock swayidle xorg-xwayland waybar swayimg pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Weston",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm weston xorg-xwayland pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm xfce4 xfce4-goodies polkit-gnome"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo pacman -S --noconfirm xmonad xmonad-contrib pcmanfm polkit-gnome dunst libnotify dmenu"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name":"Install paru (AUR helper)",
+                "comm":["sudo pacman -S --noconfirm cargo", "git clone https://aur.archlinux.org/paru.git","cd paru && makepkg -si"]
+            },
+            {
+                "name":"Install snapd",
+                "comm":["git clone https://aur.archlinux.org/snapd.git","cd snapd && makepkg -si","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+            },
+            {
+                "name":"Install flatpak",
+                "comm":["sudo pacman -S --noconfirm flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo pacman -S --noconfirm vlc firefox libreoffice-still"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo pacman -S --noconfirm sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    },
+    {
+        "name":"Ubuntu",
+        "identify" : "add-apt-repository -h",
+        "order" : 1,
+        "pre" : ["sudo apt update","sudo apt upgrade","sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro software-properties-common"],
+        "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo add-apt-repository ppa:kisak/kisak-mesa","sudo apt update","sudo apt install -y xserver-xorg-video-amdgpu libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo add-apt-repository ppa:kisak/kisak-mesa","sudo apt update","sudo apt install -y xserver-xorg-video-intel libgl1-mesa-dri:i386 mesa-vulkan-drivers mesa-vulkan-drivers:i386"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo add-apt-repository ppa:graphics-drivers/ppa","sudo apt update","sudo apt install -y nvidia-driver-515 libvulkan1 libvulkan1:i386"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo apt install -y xserver-xorg-video-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo apt install -y xserver-xorg-video-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo apt install -y gdm3","sudo systemctl enable gdm.service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo apt install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo apt install -y sddm","sudo systemctl enable sddm.service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo apt install -y awesome pcmanfm dunst"]
+            },
+            {
+                "name":"Budgie (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y ubuntu-budgie-desktop"]
+            },
+            {
+                "name":"Budgie (Vanilla)",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y budgie-desktop"]
+            },
+            {
+                "name":"Cinnamon (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y ubuntucinnamon-desktop"]
+            },
+            {
+                "name":"Cinnamon (Vanilla)",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-cinnamon-desktop"]
+            },
+            {
+                "name":"Deepin",
+                "DM":"",
+                "comm":["sudo add-apt-repository ppa:ubuntudde-dev/stable","sudo apt update","sudo apt install -y ubuntudde-dde"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo add-apt-repository ppa:niko2040/e19","sudo apt update","sudo apt install -y enlightenment"]
+            },
+            {
+                "name":"GNOME (Ubuntu-Branded)",
+                "DM":"",
+                "comm":["sudo apt install -y ubuntu-gnome-desktop"]
+            },
+            {
+                "name":"GNOME (Vanilla)",
+                "DM":"GDM",
+                "comm":["sudo apt install -y task-gnome-desktop"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y i3 dunst pcmanfm"]
+            },
+            {
+                "name":"KDE Plasma (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y kubuntu-desktop"]
+            },
+            {
+                "name":"KDE Plasma (Vanilla)",
+                "DM":"SDDM",
+                "comm":["sudo apt install -y kde-full"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y lxde task-lxde-desktop"]
+            },
+            {
+                "name":"LXQT (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y lubuntu-desktop breeze-icon-theme oxygen-icon-theme"]
+            },
+            {
+                "name":"LXQT (Vanilla)",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-lxqt-desktop breeze-icon-theme oxygen-icon-theme"]
+            },
+            {
+                "name":"MATE (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y ubuntu-mate-desktop mate-desktop-environment-extras"]
+            },
+            {
+                "name":"MATE (Vanilla)",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y openbox obconf dunst pcmanfm"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm dunst"]
+            },
+            {
+                "name":"Weston",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y weston xwayland pcmanfm dunst"]
+            },
+            {
+                "name":"XFCE (Ubuntu-branded)",
+                "DM":"",
+                "comm":["sudo apt install -y xubuntu-desktop"]
+            },
+            {
+                "name":"XFCE (Vanilla)",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-xfce-desktop"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst suckless-tools"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name" : "Configure extra repositories",
+                "comm" : ["sudo dpkg --add-architecture i386","sudo add-apt-repository universe","sudo apt update","sudo apt upgrade"]
+            },
+            {
+                "name":"Install snapd",
+                "comm":["sudo apt install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+            },
+            {
+                "name":"Install flatpak",
+                "comm":["sudo apt install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo apt install -y vlc firefox libreoffice"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo apt install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    },    
+    {
+        "name":"Debian",
+        "identify" : "apt -v",
+        "order" : 2,
+        "pre" : ["sudo apt install -y xorg xinit pipewire pipewire-audio pipewire-pulse bluez blueman network-manager exa neofetch micro"],
+        "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo apt install -y xserver-xorg-video-amdgpu"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo apt install -y xserver-xorg-video-intel"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo apt install -y xserver-xorg-video-nouveau"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo apt install -y xserver-xorg-video-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo apt install -y xserver-xorg-video-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo apt install -y gdm3","sudo systemctl enable gdm.service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo apt install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo apt install -y sddm","sudo systemctl enable sddm.service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo apt install -y awesome pcmanfm dunst"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y budgie-desktop"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-cinnamon-desktop"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo apt install -y task-gnome-desktop"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y i3 dunst pcmanfm"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo apt install -y kde-full"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y lxde task-lxde-desktop"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-lxqt-desktop breeze-icon-theme oxygen-icon-theme"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-mate-desktop mate-desktop-environment-extras"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y openbox obconf dunst pcmanfm"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y sway swaybg swaylock swayidle waybar xwayland pcmanfm dunst"]
+            },
+            {
+                "name":"Weston",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y weston xwayland pcmanfm dunst"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y task-xfce-desktop"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y xmonad libghc-xmonad-contrib-dev pcmanfm dunst suckless-tools"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name" : "Add 32-bit repositories",
+                "comm" : ["sudo dpkg --add-architecture i386","sudo apt update","sudo apt upgrade"]
+            },
+            {
+                "name":"Install snapd",
+                "comm":["sudo apt install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+            },
+            {
+                "name":"Install flatpak",
+                "comm":["sudo apt install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo apt install -y vlc firefox-esr libreoffice"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo apt install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    },
+    {
+        "name":"FreeBSD",
+        "identify" : "pkg -v",
+        "order" : 3,
+        "pre" : ["sudo freebsd-update fetch","sudo freebsd-update install","sudo pkg update","sudo pkg upgrade","sudo pkg install -y xf86-input-evdev xorg xdg-user-dirs xdg-utils oss polkit bash neofetch curl gcc micro gvfs unzip gzip lzip exa python usbutils networkmgr bsdisks"],
+        "post" : ["sudo sysrc dbus_enable=YES","sudo sysrc hald_enable=YES","sudo sysrc sound_load=YES","sudo sysrc snd_hda_load=YES","sudo sysrc moused_enable=YES","sudo sysrc snd_driver=YES"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo pkg install -y drm-kmod","sudo sysrc kld_list+=amdgpu"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo pkg install -y libva-intel-driver mesa-libs mesa-dri","sudo sysrc kld_list+=i915kms"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo pkg install -y nvidia-driver","sudo sysrc kld_list+=nvidia-modeset"]
+            },
+            {
+                "name" : "VirtualBox",
+                "comm" : ["sudo pkg install -y virtualbox-ose-additions","sudo sysrc vboxguest_enable=YES","sudo sysrc vboxservice_enable=YES"]
+            },
+            {
+                "name" : "VESA (BIOS)",
+                "comm" : ["sudo pkg install -y xf86-video-vesa","sudo sysrc kld_list+=vesa"]
+            },
+            {
+                "name" : "SCFB (UEFI)",
+                "comm" : ["sudo pkg install -y xf86-video-scfb","sudo sysrc kld_list+=scfb"]
+            },
+            {
+                "name" : "VMWare",
+                "comm" : ["sudo pkg install -y xf86-video-vmware","sudo sysrc kld_list+=vmwgfx"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo pkg install -y gdm","sudo sysrc gdm_enable=YES"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo pkg install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings","sudo sysrc lightdm_enable=YES"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo pkg install -y sddm","sudo sysrc sddm_enable=YES"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo pkg install -y awesome pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y budgie budgie-desktop polkit-gnome"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y polkit-gnome cinnamon"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y enlightenment ecrire ephoto evisum rage terminology"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo pkg install -y gnome polkit-gnome"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y i3 dmenu pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo pkg install -y kde5"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y lxde-meta xfce4-wm xfce4-settings polkit-gnome"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"SDDM",
+                "comm":["sudo pkg install -y lxqt plasma5-kwin plasma5-systemsettings kwinft kf5-kwindowsystem konsole plasma5-breeze-gtk plasma5-breeze kf5-breeze-icons polkit-gnome"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y mate mate-themes polkit-gnome"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y openbox obconf menumaker pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y wayland seatd sway swaybg swaylock dmenu-wayland dmenu swayidle waybar xwayland pcmanfm polkit-gnome dunst libnotify","export XDG_RUNTIME_DIR=/var/run/user/`id -u`","sudo sysrc seatd_enable=YES"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y polkit-gnome xfce"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo pkg install -y hs-xmonad pcmanfm polkit-gnome dunst libnotify"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo pkg -y install vlc firefox libreoffice octopkg"]
+            }
+        ]
+    },
+    {
+        "name":"OpenSUSE",
+        "identify" : "which zypper",
+        "order" : 4,
+        "pre" : ["sudo zypper update","sudo zypper ref","sudo zypper install -y xorg-x11 pipewire-pulseaudio bluez blueman neofetch xterm"],
+        "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo zypper install -y xf86-video-amdgpu kernel-firmware-amdgpu libdrm_amdgpu1 libdrm_amdgpu1-32bit libdrm_radeon1 libdrm_radeon1-32bit libvulkan_radeon libvulkan_radeon-32bit libvulkan1 libvulkan1-32bi"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo zypper install -y xf86-video-intel kernel-firmware-intel libdrm_intel1 libdrm_intel1-32bit libvulkan1 libvulkan1-32bit libvulkan_intel libvulkan_intel-32bit"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo zypper addrepo -f https://download.nvidia.com/opensuse/leap/15.5 nvidia","sudo zypper install -y-new-recommends --repo https://download.nvidia.com/opensuse/leap/15.5","sudo zypper install -y libvulkan1 libvulkan1-32bit"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo zypper install -y xf86-video-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo zypper install -y xf86-video-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo zypper install -y gdm","sudo systemctl enable gdm.service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo zypper install -y lightdm lightdm-gtk-greeter","sudo systemctl enable lightdm.service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo zypper install -y sddm","sudo systemctl enable sddm.service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo zypper install -y awesome pcmanfm dunst libnotify"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y budgie-desktop"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y cinnamon cinnamon-screensaver"]
+            },
+            {
+                "name":"Deepin",
+                "DM":"SDDM",
+                "comm":["sudo zypper install -t pattern deepin"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y enlightenment ephoto rage terminology"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo zypper install -y -t pattern gnome"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y i3 dmenu i3status dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo zypper install -y -t pattern kde kde_plasma"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y -t pattern lxde"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"SDDM",
+                "comm":["sudo zypper install -y -t pattern lxqt"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y patterns-mate-mate"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y openbox obconf dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y sway swaybg swaylock swayidle waybar dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"Weston",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y weston dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y -t pattern xfce"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo zypper install -y xmonad ghc-xmonad-contrib dunst libnotify"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name" : "Configure extra repositories",
+                "comm" : ["sudo zypper ar https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed/ snappy","sudo zypper --gpg-auto-import-keys refresh","sudo zypper dup --from snappy"]
+            },
+            {
+                "name":"Install snapd",
+                "comm":["sudo zypper install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+            },
+            {
+                "name":"Install flatpak",
+                "comm":["sudo zypper install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo zypper install -y vlc firefox libreoffice"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo zypper install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    },
+    {
+        "name":"Fedora",
+        "identify" : "which dnf",
+        "order" : 5,
+        "pre" : ["sudo dnf update -y","sudo dnf upgrade -y --refresh","sudo dnf install -y xorg-x11-server-Xorg  xorg-x11-xinit xterm pipewire wireplumber bluez bluez-tools blueman"],
+        "post" : ["sudo systemctl enable bluetooth","sudo systemctl set-default graphical.target"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo dnf install -y xorg-x11-drv-amdgpu"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo dnf install -y xorg-x11-drv-intel"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo dnf install -y fedora-workstation-repositories","sudo dnf config-manager --set-enabled rpmfusion-nonfree-nvidia-driver","sudo dnf install -y xorg-x11-drv-nouveau"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo dnf install -y xorg-x11-drv-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo dnf install -y xorg-x11-drv-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo dnf install -y gdm","sudo systemctl enable gdm.service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo dnf install -y lightdm lightdm-gtk","sudo systemctl enable lightdm.service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo dnf install -y sddm","sudo systemctl enable sddm.service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo dnf install -y awesome pcmanfm dunst polkit-gnome libnotify"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo dnf group install -y 'Budgie Desktop'","sudo dnf group install -y 'Budgie Desktop Applications'"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo dnf install -y @cinnamon-desktop"]
+            },
+            {
+                "name":"Deepin",
+                "DM":"SDDM",
+                "comm":["sudo dnf group install 'Deepin Desktop' -y"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo dnf install -y @enlightenment"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo dnf group install -y 'GNOME'"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo dnf group install -y 'KDE'"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo dnf group install -y 'LXDE Desktop'"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"SDDM",
+                "comm":["sudo dnf group install -y 'LXQt Desktop'"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo dnf group install -y 'MATE Desktop'","sudo dnf group install -y 'MATE Applications'"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo dnf install -y openbox obconf dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo dnf install -y sway swaybg swaylock swayidle waybar dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"Weston",
+                "DM":"LightDM",
+                "comm":["sudo apt install -y weston dunst pcmanfm libnotify"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo dnf group install -y 'Xfce Desktop'"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo dnf install -y xmonad ghc-xmonad-contrib polkit-gnome dunst polkit-gnome libnotify"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name" : "Configure extra repositories",
+                "comm" : ["sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm","sudo dnf groupupdate core -y","sudo dnf install fedora-workstation-repositories -y"]
+            },
+            {
+                "name":"Install snapd",
+                "comm":["sudo dnf install -y snapd","sudo systemctl enable --now snapd.socket","sudo snap install core"]
+            },
+            {
+                "name":"Install flatpak",
+                "comm":["sudo dnf install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo dnf install -y firefox libreoffice"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo dnf install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    },
+    {
+        "name":"Void Linux",
+        "identify" : "xbps-install -V",
+        "order" : 6,
+        "pre" : ["sudo xbps-install -Syuv","sudo xbps-install -y xorg xinit xterm pipewire gvfs avahi xdg-user-dirs xdg-utils wireplumber bluez blueman network-manager-applet polkit"],
+        "post" : ["sudo ln -s /etc/sv/bluetoothd /var/service","sudo ln -s /etc/sv/NetworkManager /var/service","sudo ln -s /etc/sv/avahi-daemon /var/service","sudo ln -s /etc/sv/dbus /var/service"],
+        "GD" : [
+            {
+                "name" : "AMD",
+                "comm" : ["sudo xbps-install -y linux-firmware-amd mesa-dri vulkan-loader mesa-vulkan-radeon amdvlk xf86-video-amdgpu mesa-vaapi mesa-vdpau"]
+            },
+            {
+                "name" : "Intel",
+                "comm" : ["sudo xbps-install -y linux-firmware-intel mesa-dri intel-video-accel"]
+            },
+            {
+                "name" : "Nvidia",
+                "comm" : ["sudo xbps-install xf86-video-nouveau mesa-dri"]
+            },
+            {
+                "name" : "VMware",
+                "comm" : ["sudo xbps-install -y xf86-video-vmware"]
+            },
+            {
+                "name" : "VESA",
+                "comm" : ["sudo xbps-install -y xf86-video-vesa"]
+            }
+        ],
+        "DM":[
+            {
+                "name":"GDM",
+                "comm":["sudo xbps-install -y gdm","sudo ln -s /etc/sv/gdm /var/service"]
+            },
+            {
+                "name":"LightDM",
+                "comm":["sudo xbps-install -y lightdm lightdm-gtk-greeter","sudo ln -s /etc/sv/lightdm /var/service"]
+            },
+            {
+                "name":"SDDM",
+                "comm" : ["sudo xbps-install -y sddm","sudo ln -s /etc/sv/sddm /var/service"]
+            }
+        ],
+        "DE":[
+            {
+                "name":"Awesome",
+                "DM":"LightDM",
+                "comm": ["sudo xbps-install -y awesome pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Budgie",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y budgie-desktop budgie-screensaver polkit-gnome"]
+            },
+            {
+                "name":"Cinnamon",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y cinnamon-all polkit-gnome"]
+            },
+            {
+                "name":"Enlightenment",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y enlightenment"]
+            },
+            {
+                "name":"GNOME",
+                "DM":"GDM",
+                "comm":["sudo xbps-install -y gnome gnome-apps polkit-gnome"]
+            },
+            {
+                "name":"i3",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y libnotify i3 dunst pcmanfm polkit-gnome"]
+            },
+            {
+                "name":"KDE Plasma",
+                "DM":"SDDM",
+                "comm":["sudo xbps-install -y kde5 kde5-baseapps"]
+            },
+            {
+                "name":"LXDE",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y lxde polkit-gnome"]
+            },
+            {
+                "name":"LXQT",
+                "DM":"SDDM",
+                "comm":["sudo xbps-install -y lxqt polkit-gnome kwin"]
+            },
+            {
+                "name":"MATE",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y mate mate-extra polkit-gnome"]
+            },
+            {
+                "name":"Openbox",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y openbox obconf menumaker pcmanfm polkit-gnome dunst libnotify"]
+            },
+            {
+                "name":"Sway",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y sway swaybg swaylock swayidle xorg-server-xwayland pcmanfm polkit-gnome dunst libnotify elogind","sudo ln -s /etc/sv/elogind /var/service"]
+            },
+            {
+                "name":"XFCE",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y xfce4 polkit-gnome"]
+            },
+            {
+                "name":"Xmonad",
+                "DM":"LightDM",
+                "comm":["sudo xbps-install -y xmonad xmonad-contrib polybar pcmanfm polkit-gnome dunst libnotify dmenu"]
+            }
+        ],
+        "tasks" : [
+            {
+                "name":"Configure extra repositories",
+                "comm":["sudo xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree","sudo xbps-install -Syuv"]
+            },
+            {
+                "name" : "Install flatpak",
+                "comm" : ["sudo xbps-install -y flatpak","sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"]
+            },
+            {
+                "name":"Install recommended packages",
+                "comm":["sudo xbps-install -y firefox libreoffice vlc"]
+            },
+            {
+                "name":"Install extra themes",
+                "comm":["sudo xbps-install -y sassc","git clone https://github.com/vinceliuice/Orchis-theme","cd Orchis-theme && ./install.sh -t all","cd ..","git clone https://github.com/vinceliuice/Tela-circle-icon-theme","cd Tela-circle-icon-theme && ./install.sh -a","cd ..","git clone https://github.com/vinceliuice/Vimix-cursors","cd Vimix-cursors && sudo ./install.sh","cd","git clone https://gitlab.com/dwt1/wallpapers"]
+            }
+        ]
+    }
+]
