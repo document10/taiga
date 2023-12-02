@@ -10,7 +10,7 @@ import sys
 import math
 
 #will be important for future versions
-version = 0.4
+version = 0.5
 
 ###functions for creating menus
 
@@ -333,13 +333,15 @@ def load(distros):
 
 #gets all data regarding distros
 def serialize():
-    local = True
-    if local:
-        file = open("distros.json","r")
-    else:
-        print("Downoading distro info manually")
-    distros = json.loads(file.read())
-    file.close()    
+    distros = []
+    workdir = Path.cwd()
+    files = os.listdir(str(workdir)+"/distros")
+    for f in files:
+        file = open(str(workdir)+"/distros/"+f,"r")
+        j = json.loads(file.read())
+        distros.append(j)
+        file.close()
+    distros = sorted(distros, key=itemgetter('order'))
     return distros
 
 #(attempt to) get the distro
